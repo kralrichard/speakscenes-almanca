@@ -6,6 +6,7 @@ büyütür (bebek → kendinden emin yetişkin) ve cümleler tam o hızda zorla�
 Her kart dinlenebilir (🔊 / 🐢 yavaş), **mikrofonla sesli söylenip** gerçek
 konuşma tanımayla puanlanır (de-DE), Türkçe çevirisi bir dokunuşla açılır.
 
+- **Dünya haritası ve Karakter ekranı** — büyüyen avatarınla konuma göre pratik (Ev, Sokak, Park, Çarşı, Ofis...), avatar özelleştirme.
 - **Binlerce üretilmiş, dil bilgisi açısından doğrulanmış cümle** — küçük, elle
   seçilmiş kelime bankaları (artikel/akuzatif formlarıyla) × seviyeye göre
   etiketlenmiş kalıplar; deterministik üretim, her açılışta aynı sıra.

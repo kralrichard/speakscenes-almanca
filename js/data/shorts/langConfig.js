@@ -8,6 +8,8 @@
 
 export const LOCALE = 'de-DE';
 export const APP_LANG = 'Almanca';
+// localStorage namespace — MUST be unique per clone (same-origin hosting).
+export const APP_KEY = 'ss-de';
 
 // Closed-class words: missing one is a small error (forgiven at relaxed/normal).
 export const FUNCTION_WORDS = [
