@@ -7,7 +7,7 @@
 // Sorted A0 -> C2.
 // ============================================================================
 
-import { NOUNS, GOODS, PLACES, OWNABLE, ADJECTIVES, VERBS, OPINIONS, REQUESTS, ACTIVITIES, DURATIONS, DAILY } from './wordBanks.js';
+import { NOUNS, GOODS, PLACES, OWNABLE, ADJECTIVES, VERBS, OPINIONS, REQUESTS, ACTIVITIES, DURATIONS, DAILY } from './wordBanks.js?v=5';
 
 export const LEVEL_ORDER = ['A0', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 const levelRank = (c) => LEVEL_ORDER.indexOf(c);
@@ -78,6 +78,11 @@ const FRAMES = [
   // ---------------- A0 : first mini-sentences ----------------------------
   frame('A0', 'first-words', 999, [NOUNS], ([n]) => ({ en: `${cap(n.ei)} ${n.w}!`, tr: `Bir ${n.tr}!` })),
   frame('A0', 'pointing', 999, [NOUNS], ([n]) => ({ en: `Schau, ${n.ei} ${n.w}!`, tr: `Bak, bir ${n.tr}!` })),
+  frame('A0', 'pointing', 999, [NOUNS], ([n]) => ({ en: `Da ist ${n.ei} ${n.w}!`, tr: `İşte orada bir ${n.tr}!` })),
+  frame('A0', 'first-words', 999, [NOUNS], ([n]) => ({ en: `Noch ${n.ei} ${n.w}!`, tr: `Bir ${n.tr} daha!` })),
+  frame('A0', 'location', 999, [NOUNS], ([n]) => ({ en: `${cap(n.def)} ${n.w} ist da!`, tr: `${cap(n.tr)} burada!` })),
+  frame('A0', 'first-words', 999, [NOUNS], ([n]) => ({ en: `Oh, ${n.ei} ${n.w}!`, tr: `Oo, bir ${n.tr}!` })),
+  frame('A0', 'first-words', 260, [NOUNS, NOUNS], ([a, b]) => ({ en: `${cap(a.ei)} ${a.w} und ${b.ei} ${b.w}!`, tr: `Bir ${a.tr} ve bir ${b.tr}!` })),
 
   // ---------------- A1 : simple full sentences ---------------------------
   frame('A1', 'naming', 999, [NOUNS], ([n]) => ({ en: `Das ist ${n.ei} ${n.w}.`, tr: `Bu bir ${n.tr}.` })),
@@ -125,19 +130,35 @@ const FRAMES = [
   frame('B1', 'plans', 999, [V], ([v]) => ({ en: `Ich möchte ${v.inf} lernen.`, tr: `${cap(v.trInf)} öğrenmek istiyorum.` })),
   frame('B1', 'experience', 999, [ACTIVITIES, DURATIONS], ([a, d]) => ({ en: `${a.t} ${d.t}.`, tr: `${cap(d.tr)} ${a.tr}.` })),
   frame('B1', 'describing', 700, [OWNABLE, A], ([n, a]) => ({ en: `Ich habe noch nie so ${n.acc} ${accAttr(a, n)} ${n.w} gesehen.`, tr: `Daha önce hiç bu kadar ${a.tr} bir ${n.tr} görmedim.` })),
+  frame('B1', 'describing', 400, [NOUNS, A], ([n, a]) => ({ en: `Ich frage mich, ob ${n.def} ${n.w} wirklich so ${a.w} ist.`, tr: `${cap(n.tr)} gerçekten bu kadar ${a.tr} mı, merak ediyorum.` })),
+  frame('B1', 'describing', 400, [NOUNS, A], ([n, a]) => ({ en: `Findest du nicht, dass ${n.def} ${n.w} zu ${a.w} ist?`, tr: `Sence de ${n.tr} fazla ${a.tr} değil mi?` })),
 
   // ---------------- B2 : complex social & professional -------------------
   frame('B2', 'opinions', 999, [OPINIONS], ([o]) => ({ en: `Ich finde, ${o.c}.`, tr: `Bana göre ${o.tr}.` })),
   frame('B2', 'opinions', 999, [OPINIONS], ([o]) => ({ en: `Ehrlich gesagt: ${cap(o.c)}.`, tr: `Dürüst olmak gerekirse, ${o.tr}.` })),
   frame('B2', 'polite-requests', 999, [REQUESTS], ([r]) => ({ en: `Es wäre nett, wenn Sie ${r.r} könnten.`, tr: `Acaba ${r.tr}? Çok memnun olurum.` })),
+  frame('B2', 'describing', 600, [NOUNS, A], ([n, a]) => ({ en: `Ehrlich gesagt hätte ich nicht gedacht, dass ${n.def} ${n.w} so ${a.w} sein würde.`, tr: `Açıkçası ${n.tr} bu kadar ${a.tr} olur diye düşünmemiştim.` })),
+  frame('B2', 'describing', 500, [NOUNS, A], ([n, a]) => ({ en: `Es kommt darauf an, wie ${a.w} ${n.def} ${n.w} tatsächlich ist.`, tr: `${cap(n.tr)} gerçekte ne kadar ${a.tr}, ona bağlı.` })),
+  frame('B2', 'describing', 400, [NOUNS, A], ([n, a]) => ({ en: `Meiner Erfahrung nach ist ${n.def} ${n.w} selten so ${a.w}.`, tr: `Tecrübeme göre ${n.tr} nadiren bu kadar ${a.tr} olur.` })),
+  frame('B2', 'plans', 999, [V], ([v]) => ({ en: `Ich hätte nie gedacht, dass ich einmal ${v.inf} würde.`, tr: `Bir gün ${v.trInf} aklıma gelmezdi.` })),
+  frame('B2', 'advice', 999, [V], ([v]) => ({ en: `Es fällt mir schwer, regelmäßig zu ${v.inf}.`, tr: `Düzenli olarak ${v.trInf} bana zor geliyor.` })),
 
   // ---------------- C1 : advanced ----------------------------------------
   frame('C1', 'opinions', 999, [OPINIONS], ([o]) => ({ en: `Ich bin überzeugt: ${cap(o.c)}.`, tr: `Bana kalırsa ${o.tr}.` })),
   frame('C1', 'opinions', 999, [OPINIONS], ([o]) => ({ en: `Eines ist klar: ${cap(o.c)}.`, tr: `Şu açık: ${o.tr}.` })),
+  frame('C1', 'describing', 600, [NOUNS, A], ([n, a]) => ({ en: `Es überrascht mich, wie ${a.w} ${n.def} ${n.w} tatsächlich ist.`, tr: `${cap(n.tr)} gerçekte ne kadar ${a.tr}, bu beni şaşırtıyor.` })),
+  frame('C1', 'describing', 600, [NOUNS, A], ([n, a]) => ({ en: `Man sollte nicht davon ausgehen, dass ${n.def} ${n.w} immer so ${a.w} ist.`, tr: `${cap(n.tr)} her zaman bu kadar ${a.tr} olur diye varsaymamak gerek.` })),
+  frame('C1', 'describing', 600, [NOUNS, A], ([n, a]) => ({ en: `Ob ${n.def} ${n.w} wirklich so ${a.w} ist, bleibt fraglich.`, tr: `${cap(n.tr)} gerçekten bu kadar ${a.tr} mı, şüpheli.` })),
+  frame('C1', 'advice', 999, [V], ([v]) => ({ en: `Es wäre durchaus sinnvoll, regelmäßig zu ${v.inf}.`, tr: `Düzenli olarak ${v.trInf} gerçekten mantıklı olurdu.` })),
+  frame('C1', 'advice', 999, [V], ([v]) => ({ en: `Mir ist bewusst, dass ich öfter ${v.inf} sollte.`, tr: `Daha sık ${v.trInf} gerektiğinin farkındayım.` })),
 
   // ---------------- C2 : confident, precise ------------------------------
   frame('C2', 'nuance', 999, [OPINIONS], ([o]) => ({ en: `Ganz ehrlich: ${cap(o.c)}.`, tr: `Tamamen dürüst olmam gerekirse, ${o.tr}.` })),
-  frame('C2', 'nuance', 999, [OPINIONS], ([o]) => ({ en: `Man muss zugeben: ${cap(o.c)}.`, tr: `Kabul etmek gerek: ${o.tr}.` }))
+  frame('C2', 'nuance', 999, [OPINIONS], ([o]) => ({ en: `Man muss zugeben: ${cap(o.c)}.`, tr: `Kabul etmek gerek: ${o.tr}.` })),
+  frame('C2', 'describing', 600, [NOUNS, A], ([n, a]) => ({ en: `Man könnte kaum behaupten, dass ${n.def} ${n.w} besonders ${a.w} wäre.`, tr: `${cap(n.tr)} özellikle ${a.tr} denemez pek.` })),
+  frame('C2', 'describing', 600, [NOUNS, A], ([n, a]) => ({ en: `Es lässt sich nicht leugnen, dass ${n.def} ${n.w} bemerkenswert ${a.w} ist.`, tr: `${cap(n.tr)} dikkat çekici derecede ${a.tr}, bu inkar edilemez.` })),
+  frame('C2', 'describing', 500, [OWNABLE, A], ([n, a]) => ({ en: `Selten habe ich ${n.acc} so ${accAttr(a, n)} ${n.w} gesehen.`, tr: `Nadiren bu kadar ${a.tr} bir ${n.tr} gördüm.` })),
+  frame('C2', 'plans', 999, [V], ([v]) => ({ en: `Rückblickend hätte ich viel öfter ${v.inf} sollen.`, tr: `Geriye dönüp bakınca çok daha sık ${v.trInf} gerekirmiş.` }))
 ];
 
 // ============================================================================
