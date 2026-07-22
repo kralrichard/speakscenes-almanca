@@ -1,20 +1,17 @@
 // ============================================================================
-// Shorts sentence bank — GERMAN. Same deterministic frame-expansion approach
-// as the English original: ~35 grammatically-safe frames × the hand-checked
-// word banks produce thousands of correct, natural German sentences with
-// Turkish translations, sorted A0 -> C2 so the baby avatar grows into the
-// language sentence by sentence.
-//
-// A "Short" = { id, en, tr, level, topic, words }   (`en` = the TARGET-language
-// sentence; the field keeps its original name so the feed UI works unchanged.)
+// Shorts sentence bank — GERMAN. Deterministic frame expansion over the
+// hand-checked banks. Sentence-first: A0 is short exclamations, everything
+// above is full sentences — including attributive adjectives with correct
+// endings (ein großer Hund / einen großen Hund), Perfekt past, werden-future,
+// seit-durations, and a hand-written DAILY set of real everyday sentences.
+// Sorted A0 -> C2.
 // ============================================================================
 
-import { NOUNS, GOODS, PLACES, ADJECTIVES, VERBS, OPINIONS, REQUESTS } from './wordBanks.js';
+import { NOUNS, GOODS, PLACES, OWNABLE, ADJECTIVES, VERBS, OPINIONS, REQUESTS, ACTIVITIES, DURATIONS, DAILY } from './wordBanks.js';
 
 export const LEVEL_ORDER = ['A0', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 const levelRank = (c) => LEVEL_ORDER.indexOf(c);
 
-// --- tiny deterministic RNG (mulberry32) ------------------------------------
 function mulberry32(seed) {
   let a = seed >>> 0;
   return function () {
@@ -32,6 +29,14 @@ function trQ(word) {
   const v = (word.toLowerCase().match(/[aeıioöuü]/g) || ['e']).pop();
   return { a: 'mı', ı: 'mı', e: 'mi', i: 'mi', o: 'mu', u: 'mu', ö: 'mü', ü: 'mü' }[v] || 'mi';
 }
+
+// --- German attributive adjective endings, derived from the noun's gender ---
+// (nominative: ein großER Hund / eine großE Katze / ein großES Pferd;
+//  accusative: einen großEN Hund / eine großE Katze / ein großES Pferd)
+const gOf = (n) => n.def === 'der' ? 'm' : n.def === 'die' ? 'f' : 'n';
+const stem = (a) => a.w === 'teuer' ? 'teur' : a.w;
+const nomAttr = (a, n) => stem(a) + ({ m: 'er', f: 'e', n: 'es' })[gOf(n)];
+const accAttr = (a, n) => stem(a) + ({ m: 'en', f: 'e', n: 'es' })[gOf(n)];
 
 function frame(level, topic, capN, slots, make) {
   return { level, topic, capN, slots, make };
@@ -70,20 +75,22 @@ function expandFrame(f, seedBase) {
 const A = ADJECTIVES, V = VERBS;
 
 const FRAMES = [
-  // ---------------- A0 : first words -------------------------------------
-  frame('A0', 'first-words', 999, [NOUNS], ([n]) => ({ en: `${n.w}.`, tr: `${cap(n.tr)}.` })),
-  frame('A0', 'first-words', 999, [NOUNS], ([n]) => ({ en: `${cap(n.ei)} ${n.w}.`, tr: `Bir ${n.tr}.` })),
+  // ---------------- A0 : first mini-sentences ----------------------------
+  frame('A0', 'first-words', 999, [NOUNS], ([n]) => ({ en: `${cap(n.ei)} ${n.w}!`, tr: `Bir ${n.tr}!` })),
+  frame('A0', 'pointing', 999, [NOUNS], ([n]) => ({ en: `Schau, ${n.ei} ${n.w}!`, tr: `Bak, bir ${n.tr}!` })),
 
-  // ---------------- A1 : simple sentences --------------------------------
+  // ---------------- A1 : simple full sentences ---------------------------
   frame('A1', 'naming', 999, [NOUNS], ([n]) => ({ en: `Das ist ${n.ei} ${n.w}.`, tr: `Bu bir ${n.tr}.` })),
-  frame('A1', 'pointing', 999, [NOUNS], ([n]) => ({ en: `Schau, ${n.ei} ${n.w}!`, tr: `Bak, bir ${n.tr}!` })),
   frame('A1', 'pointing', 999, [NOUNS], ([n]) => ({ en: `Hier ist ${n.ei} ${n.w}.`, tr: `İşte bir ${n.tr}.` })),
   frame('A1', 'questions', 999, [NOUNS], ([n]) => ({ en: `Wo ist ${n.def} ${n.w}?`, tr: `${cap(n.tr)} nerede?` })),
   frame('A1', 'seeing', 999, [NOUNS], ([n]) => ({ en: `Ich sehe ${n.acc} ${n.w}.`, tr: `Bir ${n.tr} görüyorum.` })),
   frame('A1', 'having', 999, [NOUNS], ([n]) => ({ en: `Ich habe ${n.acc} ${n.w}.`, tr: `Bende bir ${n.tr} var.` })),
   frame('A1', 'questions', 999, [NOUNS], ([n]) => ({ en: `Ist das ${n.ei} ${n.w}?`, tr: `Bu bir ${n.tr} ${trQ(n.tr)}?` })),
-  frame('A1', 'describing', 650, [NOUNS, A], ([n, a]) => ({ en: `${cap(n.def)} ${n.w} ist ${a.w}.`, tr: `${cap(n.tr)} ${a.tr}.` })),
-  frame('A1', 'describing', 400, [NOUNS, A], ([n, a]) => ({ en: `${cap(n.def)} ${n.w} ist nicht ${a.w}.`, tr: `${cap(n.tr)} ${a.tr} değil.` })),
+  frame('A1', 'seeing', 999, [NOUNS], ([n]) => ({ en: `Ich habe ${n.acc} ${n.w} gefunden.`, tr: `Bir ${n.tr} buldum.` })),
+  frame('A1', 'questions', 999, [OWNABLE], ([n]) => ({ en: `${cap(n.def)} ${n.w} ist weg!`, tr: `${cap(n.tr)} kayıp!` })),
+  frame('A1', 'describing', 999, [NOUNS, A], ([n, a]) => ({ en: `${cap(n.def)} ${n.w} ist ${a.w}.`, tr: `${cap(n.tr)} ${a.tr}.` })),
+  frame('A1', 'describing', 500, [NOUNS, A], ([n, a]) => ({ en: `${cap(n.def)} ${n.w} ist nicht ${a.w}.`, tr: `${cap(n.tr)} ${a.tr} değil.` })),
+  frame('A1', 'describing', 800, [NOUNS, A], ([n, a]) => ({ en: `Das ist ${n.ei} ${nomAttr(a, n)} ${n.w}.`, tr: `Bu ${a.tr} bir ${n.tr}.` })),
   frame('A1', 'routines', 999, [V], ([v]) => ({ en: `Ich ${v.ich} jeden Tag.`, tr: `Her gün ${v.tr1}.` })),
   frame('A1', 'likes', 999, [V], ([v]) => ({ en: `Ich ${v.ich} gern.`, tr: `${cap(v.trGer)} severim.` })),
 
@@ -92,13 +99,23 @@ const FRAMES = [
   frame('A2', 'shopping', 999, [GOODS], ([n]) => ({ en: `Wie viel kostet ${n.def} ${n.w}?`, tr: `${cap(n.tr)} ne kadar?` })),
   frame('A2', 'questions', 999, [GOODS], ([n]) => ({ en: `Haben Sie ${n.acc} ${n.w}?`, tr: `Sizde ${n.tr} var mı?` })),
   frame('A2', 'shopping', 999, [GOODS], ([n]) => ({ en: `Ich suche ${n.acc} ${n.w}.`, tr: `Bir ${n.tr} arıyorum.` })),
+  frame('A2', 'shopping', 999, [GOODS], ([n]) => ({ en: `Ich möchte ${n.acc} ${n.w} kaufen.`, tr: `Bir ${n.tr} almak istiyorum.` })),
   frame('A2', 'negatives', 999, [NOUNS], ([n]) => ({ en: `Ich habe k${n.acc} ${n.w}.`, tr: `Bende ${n.tr} yok.` })),
+  frame('A2', 'negatives', 999, [NOUNS], ([n]) => ({ en: `Ich brauche k${n.acc} ${n.w}.`, tr: `Bana ${n.tr} gerekmiyor.` })),
   frame('A2', 'needs', 999, [NOUNS], ([n]) => ({ en: `Ich brauche ${n.acc} ${n.w}.`, tr: `Bana bir ${n.tr} lazım.` })),
   frame('A2', 'location', 999, [NOUNS], ([n]) => ({ en: `Es gibt hier ${n.acc} ${n.w}.`, tr: `Burada bir ${n.tr} var.` })),
+  frame('A2', 'location', 999, [NOUNS], ([n]) => ({ en: `Gibt es hier in der Nähe ${n.acc} ${n.w}?`, tr: `Yakınlarda bir ${n.tr} var mı?` })),
+  frame('A2', 'seeing', 999, [NOUNS], ([n]) => ({ en: `Ich habe ${n.acc} ${n.w} gesehen.`, tr: `Bir ${n.tr} gördüm.` })),
+  frame('A2', 'shopping', 620, [GOODS, A], ([n, a]) => ({ en: `Sie hat ${n.acc} ${accAttr(a, n)} ${n.w} gekauft.`, tr: `${cap(a.tr)} bir ${n.tr} aldı.` })),
+  frame('A2', 'describing', 700, [OWNABLE, A], ([n, a]) => ({ en: `Ich habe ${n.acc} ${accAttr(a, n)} ${n.w}.`, tr: `Bende ${a.tr} bir ${n.tr} var.` })),
+  frame('A2', 'exclaim', 600, [NOUNS, A], ([n, a]) => ({ en: `Was für ${n.ei} ${nomAttr(a, n)} ${n.w}!`, tr: `Ne ${a.tr} bir ${n.tr}!` })),
   frame('A2', 'plans', 999, [V], ([v]) => ({ en: `Ich möchte heute ${v.inf}.`, tr: `Bugün ${v.trInf} istiyorum.` })),
   frame('A2', 'negatives', 999, [V], ([v]) => ({ en: `Ich will jetzt nicht ${v.inf}.`, tr: `Şimdi ${v.trInf} istemiyorum.` })),
   frame('A2', 'obligation', 999, [V], ([v]) => ({ en: `Ich muss jetzt ${v.inf}.`, tr: `Şimdi ${v.trInf} zorundayım.` })),
   frame('A2', 'plans', 999, [V], ([v]) => ({ en: `Möchtest du ${v.inf}?`, tr: `${cap(v.trInf)} ister misin?` })),
+  frame('A2', 'routines', 999, [V], ([v]) => ({ en: `Am Wochenende ${v.ich} ich gern.`, tr: `Hafta sonları ${v.trGer} severim.` })),
+  frame('A2', 'routines', 999, [V], ([v]) => ({ en: `Gestern ${v.aux} ich viel ${v.part}.`, tr: `Dün çok ${v.trPast}.` })),
+  frame('A2', 'plans', 999, [V], ([v]) => ({ en: `Morgen werde ich ${v.inf}.`, tr: `Yarın ${v.trFut}.` })),
 
   // ---------------- B1 : more independence -------------------------------
   frame('B1', 'polite-requests', 999, [REQUESTS], ([r]) => ({ en: `Könnten Sie bitte ${r.r}?`, tr: `Acaba ${r.tr}?` })),
@@ -106,6 +123,8 @@ const FRAMES = [
   frame('B1', 'directions', 999, [PLACES], ([n]) => ({ en: `Wissen Sie, wo ${n.def} ${n.w} ist?`, tr: `${cap(n.tr)} nerede, biliyor musunuz?` })),
   frame('B1', 'opinions', 999, [OPINIONS], ([o]) => ({ en: `Ich denke, ${o.c}.`, tr: `Bence ${o.tr}.` })),
   frame('B1', 'plans', 999, [V], ([v]) => ({ en: `Ich möchte ${v.inf} lernen.`, tr: `${cap(v.trInf)} öğrenmek istiyorum.` })),
+  frame('B1', 'experience', 999, [ACTIVITIES, DURATIONS], ([a, d]) => ({ en: `${a.t} ${d.t}.`, tr: `${cap(d.tr)} ${a.tr}.` })),
+  frame('B1', 'describing', 700, [OWNABLE, A], ([n, a]) => ({ en: `Ich habe noch nie so ${n.acc} ${accAttr(a, n)} ${n.w} gesehen.`, tr: `Daha önce hiç bu kadar ${a.tr} bir ${n.tr} görmedim.` })),
 
   // ---------------- B2 : complex social & professional -------------------
   frame('B2', 'opinions', 999, [OPINIONS], ([o]) => ({ en: `Ich finde, ${o.c}.`, tr: `Bana göre ${o.tr}.` })),
@@ -133,6 +152,11 @@ export function buildShortsBank() {
     const sentences = expandFrame(f, 1000 + fi * 7919);
     sentences.forEach((s, si) => all.push({ ...s, id: `s${fi}_${si}` }));
   });
+  // Hand-written everyday sentences join the stream as-is.
+  DAILY.forEach((d, i) => all.push({
+    en: d.t, tr: d.tr, level: d.level, topic: 'daily',
+    words: d.t.split(/\s+/).length, id: `d${i}`
+  }));
   const seen = new Set();
   const deduped = all.filter(s => {
     const k = s.en.toLowerCase();
