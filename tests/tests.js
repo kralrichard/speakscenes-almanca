@@ -3,9 +3,14 @@
 // app modules. Mutates no localStorage (growth test edits in-memory state and
 // restores it).
 
-import { buildShortsBank, levelBands, sentencesForLevel, shortForLevel, shortsCount, LEVEL_ORDER } from '../js/data/shorts/sentenceBank.js?v=5';
-import { shortsStore, GROWTH_THRESHOLDS } from '../js/progress/shortsStore.js?v=5';
-import { scoreAttempt } from '../js/speech/scorer.js?v=5';
+import { buildShortsBank, levelBands, sentencesForLevel, shortForLevel, shortsCount, LEVEL_ORDER } from '../js/data/shorts/sentenceBank.js?v=6';
+import { shortsStore, GROWTH_THRESHOLDS } from '../js/progress/shortsStore.js?v=6';
+import { scoreAttempt } from '../js/speech/scorer.js?v=6';
+import { ALL_SCENARIOS, STORY_ENVIRONMENTS } from '../js/data/branching/scenarios/index.js?v=6';
+import { CHARACTERS } from '../js/data/branching/characters.js?v=6';
+import { PHRASEBOOK } from '../js/data/branching/phrasebook.js?v=6';
+import { BranchEngine } from '../js/engine/branchEngine.js?v=6';
+import { CEFR_LEVELS } from '../js/data/branching/scenarioSchema.js?v=6';
 
 const results = [];
 function test(name, fn) {
@@ -91,6 +96,86 @@ test('growth: stage index tracks swipe thresholds', () => {
   st.swipes = GROWTH_THRESHOLDS[6] + 999; assertEq(shortsStore.stageIndex(), 6, 'capped at last stage');
   st.swipes = 0; assertEq(shortsStore.currentLevel(), 'A0', 'level maps from stage');
   st.swipes = orig;
+});
+
+// ---------------- Story Mode ----------------
+// createScenario already validates each graph at import time (bad content
+// would have thrown before this file runs); these tests check the properties
+// the schema cannot see on its own.
+
+test('story: 24 scenarios, all environments used are declared', () => {
+  assert(ALL_SCENARIOS.length === 24, `expected 24 scenarios, got ${ALL_SCENARIOS.length}`);
+  const envIds = new Set(STORY_ENVIRONMENTS.map(e => e.id));
+  for (const s of ALL_SCENARIOS) {
+    assert(envIds.has(s.environmentId), `${s.id}: unknown environment ${s.environmentId}`);
+    assert(CEFR_LEVELS.includes(s.level), `${s.id}: bad level ${s.level}`);
+  }
+});
+
+test('story: every scenario NPC exists and every ending is reachable', () => {
+  for (const s of ALL_SCENARIOS) {
+    for (const npcId of s.npcIds) assert(CHARACTERS[npcId], `${s.id}: unknown npc ${npcId}`);
+    // BFS from start over all edge kinds (choice.next, node.next,
+    // node.endingId) — a target id is either a node or an ending.
+    const reachedEndings = new Set();
+    const seen = new Set([s.startNodeId]);
+    const queue = [s.startNodeId];
+    const follow = (target) => {
+      if (!target) return;
+      if (s.endings[target]) reachedEndings.add(target);
+      else if (!seen.has(target)) { seen.add(target); queue.push(target); }
+    };
+    while (queue.length) {
+      const node = s.nodes[queue.shift()];
+      if (!node) continue;
+      follow(node.next);
+      if (node.endingId) reachedEndings.add(node.endingId);
+      for (const c of node.choices || []) follow(c.next);
+    }
+    for (const endId of Object.keys(s.endings)) {
+      assert(reachedEndings.has(endId), `${s.id}: ending ${endId} unreachable`);
+    }
+  }
+});
+
+test('story: engine can start, commit a choice, and rewind on every scenario', () => {
+  for (const s of ALL_SCENARIOS) {
+    const eng = new BranchEngine(s);
+    eng.advanceToStart();
+    const node = eng.currentNode();
+    assert(node && node.choices && node.choices.length >= 2, `${s.id}: start node needs >= 2 choices`);
+    const res = eng.commitChoice(node.choices[0].id);
+    assert(res, `${s.id}: commit failed`);
+    if (!res.ending) {
+      assert(eng.back(), `${s.id}: back() failed`);
+      assertEq(eng.currentNode().id, node.id, `${s.id}: rewind returned to wrong node`);
+    }
+  }
+});
+
+test('story: no English leaks into NPC lines or player sentences', () => {
+  // Cheap heuristic: hallmark English function words as standalone tokens.
+  const en = /(^|\s)(the|and|you|what|with|have|this|would|please)(\s|$|[?!,.])/i;
+  for (const s of ALL_SCENARIOS) {
+    for (const node of Object.values(s.nodes)) {
+      if (node.text) assert(!en.test(node.text), `${s.id}/${node.id}: English in NPC line "${node.text}"`);
+      for (const c of node.choices || []) {
+        assert(!en.test(c.sentence), `${s.id}/${c.id}: English in sentence "${c.sentence}"`);
+      }
+    }
+  }
+});
+
+test('phrasebook: 200+ well-formed entries with Turkish translations', () => {
+  assert(PHRASEBOOK.length >= 200, `expected >= 200 phrases, got ${PHRASEBOOK.length}`);
+  const ids = new Set();
+  for (const p of PHRASEBOOK) {
+    assert(p.en && p.en.trim(), `${p.id}: empty sentence`);
+    assert(p.tr && p.tr.trim(), `${p.id}: empty tr`);
+    assert(CEFR_LEVELS.includes(p.level), `${p.id}: bad level ${p.level}`);
+    assert(!ids.has(p.id), `duplicate phrase id ${p.id}`);
+    ids.add(p.id);
+  }
 });
 
 // ---------------- report ----------------

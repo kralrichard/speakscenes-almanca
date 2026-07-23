@@ -6,14 +6,17 @@
 // start), matching the original onboarding in one step.
 // ============================================================================
 
-import { worldStore } from '../../progress/worldStore.js?v=5';
-import { shortsStore } from '../../progress/shortsStore.js?v=5';
-import { shortsCount } from '../../data/shorts/sentenceBank.js?v=5';
-import { SHORT_LOCATIONS } from '../../data/shorts/shortsLocations.js?v=5';
-import { GROWTH_STAGES } from '../../data/worldLevels.js?v=5';
-import { renderPlayerAvatar } from '../components/avatarBuilder.js?v=5';
-import { APP_LANG } from '../../data/shorts/langConfig.js?v=5';
-import { navigate } from '../router.js?v=5';
+import { worldStore } from '../../progress/worldStore.js?v=6';
+import { shortsStore } from '../../progress/shortsStore.js?v=6';
+import { shortsCount } from '../../data/shorts/sentenceBank.js?v=6';
+import { SHORT_LOCATIONS } from '../../data/shorts/shortsLocations.js?v=6';
+import { GROWTH_STAGES } from '../../data/worldLevels.js?v=6';
+import { renderPlayerAvatar } from '../components/avatarBuilder.js?v=6';
+import { APP_LANG } from '../../data/shorts/langConfig.js?v=6';
+import { MINI_GAME_TYPES } from '../../data/miniGames/index.js?v=6';
+import { ALL_SCENARIOS } from '../../data/branching/scenarios/index.js?v=6';
+import { PHRASEBOOK_COUNT } from '../../data/branching/phrasebook.js?v=6';
+import { navigate } from '../router.js?v=6';
 
 function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 
@@ -65,6 +68,37 @@ export function renderWorldShorts(container) {
 
         <h2 class="ws-sub">Nereye gidiyoruz?</h2>
         <div class="wsl-grid">${cards}</div>
+
+        <h2 class="ws-sub">Konuşma maceraları</h2>
+        <div class="wsl-grid">
+          <button class="wsl-card" data-act="story">
+            <span class="wsl-emoji">🎭</span>
+            <span class="wsl-body">
+              <span class="wsl-label">Hikaye Modu</span>
+              <span class="wsl-desc">${ALL_SCENARIOS.length} dallanan senaryo — sen konuş, karakterler tepki versin</span>
+            </span>
+          </button>
+          <button class="wsl-card" data-act="practice">
+            <span class="wsl-emoji">⚡</span>
+            <span class="wsl-body">
+              <span class="wsl-label">Hızlı Pratik</span>
+              <span class="wsl-desc">${PHRASEBOOK_COUNT}+ gerçek cümleyi konuşarak çalış</span>
+            </span>
+          </button>
+        </div>
+
+        <h2 class="ws-sub">Mini oyunlar</h2>
+        <div class="wsl-grid">
+          ${MINI_GAME_TYPES.map(g => `
+          <button class="wsl-card" data-game="${g.type}">
+            <span class="wsl-emoji">${g.icon}</span>
+            <span class="wsl-body">
+              <span class="wsl-label">${esc(g.title)}</span>
+              <span class="wsl-desc">${esc(g.description)}</span>
+            </span>
+          </button>`).join('')}
+        </div>
+
         <p class="ws-foot">${shortsCount()} ${APP_LANG.toLowerCase()} cümle · A0'dan C2'ye</p>
 
         ${w.onboarded ? '' : `
@@ -82,6 +116,10 @@ export function renderWorldShorts(container) {
     container.querySelectorAll('[data-loc]').forEach(b =>
       b.addEventListener('click', () => navigate(`shorts?loc=${b.dataset.loc}`)));
     container.querySelector('[data-act="character"]').addEventListener('click', () => navigate('character'));
+    container.querySelector('[data-act="story"]').addEventListener('click', () => navigate('story'));
+    container.querySelector('[data-act="practice"]').addEventListener('click', () => navigate('practice-phrases'));
+    container.querySelectorAll('[data-game]').forEach(b =>
+      b.addEventListener('click', () => navigate(`minigame/${b.dataset.game}/any`)));
 
     const start = container.querySelector('.ws-start');
     if (start) start.addEventListener('click', () => {

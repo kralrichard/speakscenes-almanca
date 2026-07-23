@@ -4,92 +4,95 @@
 // content/travel words that actually appear in the scenarios. Words not found
 // here fall back to a "no entry yet" popup rather than breaking.
 
-// StoryWord = { word, tr, type, ipa, definition, example, exampleTr, related? }
+// StoryWord = { word, tr, type, definition (TR), example, exampleTr, related? }
 const WORDS = [
-  { word: 'reservation', tr: 'rezervasyon', type: 'noun', ipa: '/ˌrez.əˈveɪ.ʃən/',
-    definition: 'An arrangement to keep a room, table, or seat for you.',
-    example: 'I have a reservation for two nights.', exampleTr: 'İki geceliğine rezervasyonum var.', related: ['book', 'booking'] },
-  { word: 'available', tr: 'müsait / boş', type: 'adjective', ipa: '/əˈveɪ.lə.bəl/',
-    definition: 'Able to be used or obtained; free.',
-    example: 'Do you have any rooms available?', exampleTr: 'Boş odanız var mı?' },
-  { word: 'checkout', tr: 'çıkış (otelden)', type: 'noun', ipa: '/ˈtʃek.aʊt/',
-    definition: 'The time you must leave a hotel room.',
-    example: 'Late checkout is until one o’clock.', exampleTr: 'Geç çıkış saat bire kadar.' },
-  { word: 'boarding', tr: 'biniş', type: 'noun', ipa: '/ˈbɔːr.dɪŋ/',
-    definition: 'Getting onto a plane, ship, or train.',
-    example: 'Boarding starts at 10:40.', exampleTr: 'Biniş 10:40’ta başlıyor.', related: ['gate', 'flight'] },
-  { word: 'gate', tr: 'kapı (uçuş)', type: 'noun', ipa: '/ɡeɪt/',
-    definition: 'The place in an airport where you get on your plane.',
-    example: 'You’ll board at gate B12.', exampleTr: 'B12 kapısından bineceksiniz.' },
-  { word: 'delayed', tr: 'rötarlı / gecikmiş', type: 'adjective', ipa: '/dɪˈleɪd/',
-    definition: 'Made late.',
-    example: 'My connecting flight was delayed.', exampleTr: 'Aktarma uçuşum rötar yaptı.' },
-  { word: 'excess', tr: 'fazla', type: 'adjective', ipa: '/ɪkˈses/',
-    definition: 'More than the allowed or usual amount.',
-    example: 'There’s a small excess baggage fee.', exampleTr: 'Küçük bir fazla bagaj ücreti var.' },
-  { word: 'prescription', tr: 'reçete', type: 'noun', ipa: '/prɪˈskrɪp.ʃən/',
-    definition: 'A doctor’s written order for medicine.',
-    example: 'I’d like to fill this prescription.', exampleTr: 'Bu reçeteyi doldurtmak istiyorum.' },
-  { word: 'symptoms', tr: 'belirtiler', type: 'noun', ipa: '/ˈsɪmp.təmz/',
-    definition: 'Signs that show you are ill.',
-    example: 'When did your symptoms start?', exampleTr: 'Belirtileriniz ne zaman başladı?' },
-  { word: 'drowsy', tr: 'uykulu / uyuşuk', type: 'adjective', ipa: '/ˈdraʊ.zi/',
-    definition: 'Sleepy; not fully awake.',
-    example: 'This medicine can make you drowsy.', exampleTr: 'Bu ilaç sizi uykulu yapabilir.' },
-  { word: 'allergic', tr: 'alerjik', type: 'adjective', ipa: '/əˈlɜːr.dʒɪk/',
-    definition: 'Having a bad body reaction to something.',
-    example: 'I’m allergic to nuts.', exampleTr: 'Fındık/fıstığa alerjim var.' },
-  { word: 'recommend', tr: 'önermek / tavsiye etmek', type: 'verb', ipa: '/ˌrek.əˈmend/',
-    definition: 'To suggest that something is good.',
-    example: 'What would you recommend?', exampleTr: 'Ne önerirsiniz?' },
-  { word: 'compensation', tr: 'tazminat / telafi', type: 'noun', ipa: '/ˌkɒm.penˈseɪ.ʃən/',
-    definition: 'Something given to make up for trouble or loss.',
-    example: 'I’d expect some compensation.', exampleTr: 'Bir telafi beklerdim.' },
-  { word: 'misunderstanding', tr: 'yanlış anlaşılma', type: 'noun', ipa: '/ˌmɪs.ʌn.dərˈstæn.dɪŋ/',
-    definition: 'A failure to understand something correctly.',
-    example: 'I think there’s been a misunderstanding.', exampleTr: 'Sanırım bir yanlış anlaşılma oldu.' },
-  { word: 'delegate', tr: 'yetki devretmek', type: 'verb', ipa: '/ˈdel.ɪ.ɡeɪt/',
-    definition: 'To give a task to someone else.',
-    example: 'I’m learning to delegate more.', exampleTr: 'Daha fazla yetki devretmeyi öğreniyorum.' },
-  { word: 'responsibility', tr: 'sorumluluk', type: 'noun', ipa: '/rɪˌspɒn.sɪˈbɪl.ə.ti/',
-    definition: 'A duty you must deal with.',
-    example: 'I want to take on more responsibility.', exampleTr: 'Daha fazla sorumluluk almak istiyorum.' },
-  { word: 'delay', tr: 'gecikme / rötar', type: 'noun', ipa: '/dɪˈleɪ/',
-    definition: 'A period of waiting; being late.',
-    example: 'Sorry for the delay.', exampleTr: 'Gecikme için özür dilerim.' },
-  { word: 'apologize', tr: 'özür dilemek', type: 'verb', ipa: '/əˈpɒl.ə.dʒaɪz/',
-    definition: 'To say you are sorry.',
-    example: 'I apologize for the trouble.', exampleTr: 'Zahmet için özür dilerim.' },
-  { word: 'directions', tr: 'yol tarifi', type: 'noun', ipa: '/dɪˈrek.ʃənz/',
-    definition: 'Instructions on how to get somewhere.',
-    example: 'Could you give me directions to the station?', exampleTr: 'Bana istasyona yol tarifi verir misiniz?' },
-  { word: 'nearest', tr: 'en yakın', type: 'adjective', ipa: '/ˈnɪə.rɪst/',
-    definition: 'Closest.',
-    example: 'Where is the nearest pharmacy?', exampleTr: 'En yakın eczane nerede?' },
-  { word: 'refund', tr: 'para iadesi', type: 'noun', ipa: '/ˈriː.fʌnd/',
-    definition: 'Money given back for a returned item.',
-    example: 'I’d like a refund, please.', exampleTr: 'Para iadesi istiyorum, lütfen.', related: ['return', 'exchange'] },
-  { word: 'exchange', tr: 'değişim / değiştirmek', type: 'verb', ipa: '/ɪksˈtʃeɪndʒ/',
-    definition: 'To swap one thing for another.',
-    example: 'Can I exchange it for a larger size?', exampleTr: 'Daha büyük bedenle değiştirebilir miyim?' },
-  { word: 'receipt', tr: 'fiş / makbuz', type: 'noun', ipa: '/rɪˈsiːt/',
-    definition: 'A paper showing what you paid.',
-    example: 'Do you have the receipt?', exampleTr: 'Fişiniz var mı?' },
-  { word: 'aisle', tr: 'reyon / koridor', type: 'noun', ipa: '/aɪl/',
-    definition: 'A passage between shelves in a shop.',
-    example: 'The milk is in aisle four.', exampleTr: 'Süt dördüncü koridorda.' },
-  { word: 'single', tr: 'tek yön (bilet)', type: 'noun', ipa: '/ˈsɪŋ.ɡəl/',
-    definition: 'A one-way ticket.',
-    example: 'A single to London, please.', exampleTr: 'Londra’ya tek yön, lütfen.', related: ['return'] },
-  { word: 'return', tr: 'gidiş-dönüş / iade', type: 'noun', ipa: '/rɪˈtɜːn/',
-    definition: 'A round-trip ticket; or to take an item back.',
-    example: 'A return ticket, please.', exampleTr: 'Gidiş-dönüş bilet, lütfen.' },
-  { word: 'liable', tr: 'sorumlu', type: 'adjective', ipa: '/ˈlaɪ.ə.bəl/',
-    definition: 'Legally responsible for something.',
-    example: 'You won’t be liable for that payment.', exampleTr: 'O ödemeden sorumlu olmayacaksınız.' },
-  { word: 'entitled', tr: 'hak sahibi', type: 'adjective', ipa: '/ɪnˈtaɪ.təld/',
-    definition: 'Having the right to something.',
-    example: 'You’re entitled to a full refund.', exampleTr: 'Tam para iadesine hakkınız var.' }
+  { word: 'Reservierung', tr: 'rezervasyon', type: 'isim (die)',
+    definition: 'Bir oda, masa ya da koltuğun sizin için ayrılması.',
+    example: 'Ich habe eine Reservierung für zwei Nächte.', exampleTr: 'İki geceliğine rezervasyonum var.', related: ['buchen', 'Buchung'] },
+  { word: 'Buchung', tr: 'rezervasyon / kayıt', type: 'isim (die)',
+    definition: 'Önceden yapılmış ayırtma işlemi.',
+    example: 'Hier ist meine Buchung auf dem Handy.', exampleTr: 'İşte telefondaki rezervasyonum.' },
+  { word: 'Frühstück', tr: 'kahvaltı', type: 'isim (das)',
+    definition: 'Sabah yenen ilk öğün.',
+    example: 'Ist das Frühstück inbegriffen?', exampleTr: 'Kahvaltı dahil mi?' },
+  { word: 'inbegriffen', tr: 'dahil', type: 'sıfat',
+    definition: 'Fiyatın içinde olan.',
+    example: 'Das Frühstück ist im Preis inbegriffen.', exampleTr: 'Kahvaltı fiyata dahil.' },
+  { word: 'Schlüssel', tr: 'anahtar', type: 'isim (der)',
+    definition: 'Kapıyı açmaya yarayan nesne.',
+    example: 'Hier ist Ihr Schlüssel.', exampleTr: 'İşte anahtarınız.' },
+  { word: 'Bordkarte', tr: 'biniş kartı', type: 'isim (die)',
+    definition: 'Uçağa binmek için gereken kart.',
+    example: 'Hier ist Ihre Bordkarte.', exampleTr: 'İşte biniş kartınız.', related: ['Gate', 'Flug'] },
+  { word: 'Gate', tr: 'kapı (uçuş)', type: 'isim (das)',
+    definition: 'Havalimanında uçağa bindiğiniz yer.',
+    example: 'Sie steigen an Gate B12 ein.', exampleTr: 'B12 kapısından bineceksiniz.' },
+  { word: 'Verspätung', tr: 'rötar / gecikme', type: 'isim (die)',
+    definition: 'Geç kalma durumu.',
+    example: 'Mein Anschlussflug hatte Verspätung.', exampleTr: 'Aktarma uçuşum rötar yaptı.' },
+  { word: 'Gepäck', tr: 'bagaj', type: 'isim (das)',
+    definition: 'Yolculukta taşınan çantalar ve valizler.',
+    example: 'Geben Sie Gepäck auf?', exampleTr: 'Bavul verecek misiniz?', related: ['Koffer', 'Handgepäck'] },
+  { word: 'Rezept', tr: 'reçete', type: 'isim (das)',
+    definition: 'Doktorun yazdığı ilaç belgesi.',
+    example: 'Ich möchte dieses Rezept einlösen.', exampleTr: 'Bu reçeteyi doldurtmak istiyorum.' },
+  { word: 'Kopfschmerzen', tr: 'baş ağrısı', type: 'isim (çoğul)',
+    definition: 'Baştaki ağrı.',
+    example: 'Ich habe seit zwei Tagen Kopfschmerzen.', exampleTr: 'İki gündür başım ağrıyor.' },
+  { word: 'müde', tr: 'yorgun / uykulu', type: 'sıfat',
+    definition: 'Enerjisi kalmamış; uyku ihtiyacı olan.',
+    example: 'Dieses Medikament kann müde machen.', exampleTr: 'Bu ilaç uyku yapabilir.' },
+  { word: 'allergisch', tr: 'alerjik', type: 'sıfat',
+    definition: 'Vücudun bir şeye kötü tepki vermesi.',
+    example: 'Ich bin allergisch gegen Nüsse.', exampleTr: 'Fındık/fıstığa alerjim var.' },
+  { word: 'empfehlen', tr: 'önermek / tavsiye etmek', type: 'fiil',
+    definition: 'Bir şeyin iyi olduğunu söylemek.',
+    example: 'Was würden Sie empfehlen?', exampleTr: 'Ne önerirsiniz?' },
+  { word: 'Entschädigung', tr: 'tazminat / telafi', type: 'isim (die)',
+    definition: 'Bir zahmet ya da kayıp için verilen karşılık.',
+    example: 'Ich würde eine Entschädigung erwarten.', exampleTr: 'Bir telafi beklerdim.' },
+  { word: 'Missverständnis', tr: 'yanlış anlaşılma', type: 'isim (das)',
+    definition: 'Bir şeyi yanlış anlama durumu.',
+    example: 'Ich glaube, da gab es ein Missverständnis.', exampleTr: 'Sanırım bir yanlış anlaşılma oldu.' },
+  { word: 'delegieren', tr: 'yetki devretmek', type: 'fiil',
+    definition: 'Bir işi başkasına vermek.',
+    example: 'Ich lerne, mehr zu delegieren.', exampleTr: 'Daha fazla yetki devretmeyi öğreniyorum.' },
+  { word: 'Verantwortung', tr: 'sorumluluk', type: 'isim (die)',
+    definition: 'Üstlenilmesi gereken görev.',
+    example: 'Ich möchte mehr Verantwortung übernehmen.', exampleTr: 'Daha fazla sorumluluk almak istiyorum.' },
+  { word: 'entschuldigen', tr: 'özür dilemek', type: 'fiil',
+    definition: 'Üzgün olduğunu söylemek.',
+    example: 'Ich entschuldige mich für die Umstände.', exampleTr: 'Zahmet için özür dilerim.' },
+  { word: 'Wegbeschreibung', tr: 'yol tarifi', type: 'isim (die)',
+    definition: 'Bir yere nasıl gidileceğini anlatan bilgiler.',
+    example: 'Können Sie mir eine Wegbeschreibung geben?', exampleTr: 'Bana yol tarifi verir misiniz?' },
+  { word: 'Apotheke', tr: 'eczane', type: 'isim (die)',
+    definition: 'İlaç satılan yer.',
+    example: 'Wo ist die nächste Apotheke?', exampleTr: 'En yakın eczane nerede?' },
+  { word: 'Rückerstattung', tr: 'para iadesi', type: 'isim (die)',
+    definition: 'İade edilen ürün için geri verilen para.',
+    example: 'Ich hätte gern eine Rückerstattung.', exampleTr: 'Para iadesi istiyorum.', related: ['umtauschen', 'zurückgeben'] },
+  { word: 'umtauschen', tr: 'değiştirmek', type: 'fiil',
+    definition: 'Bir şeyi başka bir şeyle takas etmek.',
+    example: 'Kann ich sie gegen eine größere Größe umtauschen?', exampleTr: 'Daha büyük bedenle değiştirebilir miyim?' },
+  { word: 'Kassenbon', tr: 'fiş / makbuz', type: 'isim (der)',
+    definition: 'Ne ödediğinizi gösteren kağıt.',
+    example: 'Haben Sie den Kassenbon?', exampleTr: 'Fişiniz var mı?' },
+  { word: 'Gleis', tr: 'peron / ray', type: 'isim (das)',
+    definition: 'Trenin kalktığı platform.',
+    example: 'Der Zug fährt von Gleis drei.', exampleTr: 'Tren üçüncü perondan kalkıyor.' },
+  { word: 'Fahrkarte', tr: 'bilet', type: 'isim (die)',
+    definition: 'Yolculuk için ödeme belgesi.',
+    example: 'Eine Fahrkarte nach London, bitte.', exampleTr: 'Londra’ya bir bilet, lütfen.', related: ['Rückfahrkarte'] },
+  { word: 'sperren', tr: 'bloke etmek', type: 'fiil',
+    definition: 'Bir kartı kullanılamaz hale getirmek.',
+    example: 'Könnten Sie meine Karte sperren?', exampleTr: 'Kartımı bloke edebilir misiniz?' },
+  { word: 'Anzeige', tr: 'tutanak / ihbar', type: 'isim (die)',
+    definition: 'Polise yapılan resmi bildirim.',
+    example: 'Ich möchte eine Anzeige aufgeben.', exampleTr: 'Tutanak tutturmak istiyorum.' },
+  { word: 'Versicherung', tr: 'sigorta', type: 'isim (die)',
+    definition: 'Kayıplara karşı koruma sağlayan hizmet.',
+    example: 'Ich brauche das für meine Versicherung.', exampleTr: 'Buna sigortam için ihtiyacım var.' }
 ];
 
 export const STORY_VOCAB = Object.fromEntries(WORDS.map(w => [w.word.toLowerCase(), w]));
@@ -97,10 +100,13 @@ export const STORY_VOCAB = Object.fromEntries(WORDS.map(w => [w.word.toLowerCase
 /** Look up a tapped word (strips punctuation, lowercases). Returns the entry
  *  or a minimal fallback object so the popup always has something to show. */
 export function lookupWord(raw) {
-  const key = String(raw).toLowerCase().replace(/[^a-z'’-]/g, '');
+  const key = String(raw).toLowerCase().replace(/[^\p{L}'’-]/gu, '');
   if (STORY_VOCAB[key]) return STORY_VOCAB[key];
-  // try singular (drop trailing s)
-  if (key.endsWith('s') && STORY_VOCAB[key.slice(0, -1)]) return STORY_VOCAB[key.slice(0, -1)];
+  // try singular-ish fallbacks (drop trailing letters — covers common plurals)
+  for (const cut of [1, 2]) {
+    const base = key.slice(0, -cut);
+    if (base && STORY_VOCAB[base]) return STORY_VOCAB[base];
+  }
   return { word: key, tr: null, type: null, ipa: null, definition: null, example: null };
 }
 
@@ -109,32 +115,32 @@ export function lookupWord(raw) {
 // hint when there's no specific note. Kept small on purpose — extendable.
 export const GRAMMAR_NOTES = {
   'asking-directions::ask_pharmacy': {
-    title: 'Indirect question',
+    title: 'Dolaylı soru (indirekte Frage)',
     points: [
-      '“Could you tell me…” is a polite way to ask.',
-      'Inside, we say “where the pharmacy is”, NOT “where is the pharmacy”.',
-      'The word order changes in an indirect question — the verb goes last.'
+      '“Könnten Sie mir sagen…” kibar bir soru kalıbıdır.',
+      'İç cümlede fiil sona gider: “…wo die nächste Apotheke ist”.',
+      'Doğrudan soruda ise fiil öndedir: “Wo ist die Apotheke?”'
     ]
   },
   'hotel-checkin::confirm': {
-    title: 'have + a reservation',
+    title: 'haben + Reservierung',
     points: [
-      '“I have a reservation” uses the present simple for a current fact.',
-      '“under the name Alex” tells whose reservation it is.'
+      '“Ich habe eine Reservierung” — şu anki bir durum için şimdiki zaman.',
+      '“auf den Namen Alex” rezervasyonun kimin adına olduğunu söyler.'
     ]
   },
   'missing-flight::explain': {
-    title: 'Past simple for a reason',
+    title: 'Neden anlatmak',
     points: [
-      '“was delayed” is the past passive — the flight received the delay.',
-      '“so I couldn’t get here” shows the result of the delay.'
+      '“hatte Verspätung” — geçmişte olan gecikmeyi anlatır.',
+      '“deshalb konnte ich nicht…” gecikmenin sonucunu gösterir.'
     ]
   },
   'job-interview::honest_weakness': {
-    title: 'used to + learning to',
+    title: 'früher + lernen zu',
     points: [
-      '“I used to take on too much” = a past habit that has changed.',
-      '“I’m learning to delegate” shows growth — a strong interview move.'
+      '“Früher habe ich zu viel übernommen” = değişmiş eski bir alışkanlık.',
+      '“ich lerne zu delegieren” gelişimi gösterir — güçlü bir mülakat hamlesi.'
     ]
   }
 };

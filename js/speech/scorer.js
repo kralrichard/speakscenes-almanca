@@ -19,7 +19,7 @@
 import {
   FUNCTION_WORDS as FN_LIST, NEGATION_WORDS as NEG_LIST, NUMBER_WORDS as NUM_LIST,
   FILLER_WORDS as FILL_LIST, DIGIT_WORDS, CONTRACTIONS, ASR_EQUIVALENTS
-} from '../data/shorts/langConfig.js?v=5';
+} from '../data/shorts/langConfig.js?v=6';
 
 export const STRICTNESS_THRESHOLDS = {
   relaxed:        { wordAccuracy: 60, clarity: 0,  fluency: 0,  allowMissingFn: true  },
@@ -142,17 +142,17 @@ function scoreFluency(timing, expectedWordCount) {
   let fluency = 85;
   if (wpm > 0 && wpm < 50) {
     fluency -= 30;
-    tips.push('Try saying the whole sentence in one smooth flow, a little faster.');
+    tips.push('Cümlenin tamamını tek seferde, biraz daha akıcı söylemeyi dene.');
   } else if (wpm > 0 && wpm < 75) {
     fluency -= 12;
   } else if (wpm > 230) {
     fluency -= 15;
-    tips.push('Try saying the sentence a little more slowly and clearly.');
+    tips.push('Cümleyi biraz daha yavaş ve net söylemeyi dene.');
   }
   const longestPauseMs = Math.max(0, ...(timing.pauseGapsMs || [0]));
   if (longestPauseMs > 1800) {
     fluency -= 25;
-    tips.push('There was a long pause in the middle -- try to keep the sentence connected.');
+    tips.push('Ortada uzun bir duraklama oldu -- cümleyi bölmeden söylemeye çalış.');
   } else if (longestPauseMs > 1000) {
     fluency -= 10;
   }
@@ -164,17 +164,17 @@ function buildWordTips(ops) {
   for (const op of ops) {
     if (op.type === 'del') {
       tips.push(FUNCTION_WORDS.has(op.expected)
-        ? `The small word "${op.expected}" was not detected -- these words are quick but important.`
-        : `Missing word: "${op.expected}".`);
+        ? `Küçük kelime "${op.expected}" duyulmadı -- bu kelimeler kısa ama önemli.`
+        : `Eksik kelime: "${op.expected}".`);
     } else if (op.type === 'sub') {
-      tips.push(`Expected "${op.expected}" but heard "${op.actual}".`);
+      tips.push(`"${op.expected}" bekleniyordu ama "${op.actual}" duyuldu.`);
     } else if (op.type === 'ins') {
-      tips.push(`Extra word heard: "${op.actual}".`);
+      tips.push(`Fazladan kelime duyuldu: "${op.actual}".`);
     }
   }
   if (tips.length > 3) {
     tips.length = 3;
-    tips.push('Listen to the sentence again, then try it slowly in one calm breath.');
+    tips.push('Cümleyi tekrar dinle, sonra sakin bir nefesle yavaşça dene.');
   }
   return tips;
 }

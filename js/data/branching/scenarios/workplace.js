@@ -1,113 +1,113 @@
-import { createScenario } from '../scenarioSchema.js?v=5';
+import { createScenario } from '../scenarioSchema.js?v=6';
 
 // ── Job interview (B2) ──────────────────────────────────────────────────────
 export const jobInterview = createScenario({
   id: 'job-interview',
-  title: 'The job interview',
+  title: 'Das Vorstellungsgespräch',
   titleTr: 'İş görüşmesi',
   environmentId: 'workplace', sceneType: 'formal-office', level: 'B2',
-  goal: 'Make a strong impression and handle tough questions.',
+  goal: 'Hinterlasse einen starken Eindruck und meistere schwierige Fragen.',
   goalTr: 'Güçlü bir izlenim bırak ve zor soruları yönet.',
   npcIds: ['carter'],
   startNodeId: 'start',
   nodes: {
     start: {
       id: 'start', speakerId: 'carter', emotion: 'formal',
-      text: 'Thanks for coming in. To start, could you tell me a little about yourself?',
+      text: 'Danke, dass Sie gekommen sind. Erzählen Sie mir zum Einstieg ein wenig über sich?',
       translation: 'Geldiğiniz için teşekkürler. Başlangıç olarak, kendinizden biraz bahseder misiniz?',
       choices: [
         { id: 'professional', intentionTr: 'Deneyimine odaklanarak profesyonel yanıt ver', tone: 'formal', difficulty: 'hard', xp: 18,
-          sentence: 'Of course. I have three years of experience in marketing, and I’m keen to take on more responsibility.',
+          sentence: 'Gern. Ich habe drei Jahre Erfahrung im Marketing und möchte gern mehr Verantwortung übernehmen.',
           translation: 'Tabii. Pazarlamada üç yıllık deneyimim var ve daha fazla sorumluluk almaya istekliyim.',
-          altAccepted: ['I have three years in marketing and want more responsibility', 'I’ve worked three years in marketing and I’m ready for more responsibility'],
+          altAccepted: ['Ich habe drei Jahre Marketing-Erfahrung und will mehr Verantwortung', 'Ich arbeite seit drei Jahren im Marketing und bin bereit für mehr Verantwortung'],
           next: 'strengths', relationshipEffect: 1 },
         { id: 'personal', intentionTr: 'Daha kişisel ve tutkulu bir yanıt ver', tone: 'friendly', difficulty: 'hard', xp: 18,
-          sentence: 'Certainly. I’m a curious person who loves solving problems and learning new skills.',
+          sentence: 'Natürlich. Ich bin ein neugieriger Mensch, der gern Probleme löst und Neues lernt.',
           translation: 'Elbette. Sorun çözmeyi ve yeni beceriler öğrenmeyi seven meraklı bir insanım.',
-          altAccepted: ['I’m curious and love solving problems and learning', 'I love learning new skills and solving problems'],
+          altAccepted: ['Ich bin neugierig und löse gern Probleme', 'Ich lerne gern Neues und löse gern Probleme'],
           next: 'strengths' }
       ]
     },
     strengths: {
       id: 'strengths', speakerId: 'carter', emotion: 'curious',
-      text: 'Good. What would you say is your greatest strength, and can you give me an example?',
+      text: 'Gut. Was würden Sie als Ihre größte Stärke bezeichnen, und haben Sie ein Beispiel dafür?',
       translation: 'Güzel. En büyük gücünüz nedir ve bir örnek verebilir misiniz?',
       choices: [
         { id: 'teamwork', intentionTr: 'Takım çalışması gücünü örnekle', tone: 'formal', difficulty: 'hard', xp: 18,
-          sentence: 'I work well under pressure. Last year I led a project that shipped two weeks early.',
+          sentence: 'Ich arbeite gut unter Druck. Letztes Jahr habe ich ein Projekt geleitet, das zwei Wochen früher fertig war.',
           translation: 'Baskı altında iyi çalışırım. Geçen yıl iki hafta erken tamamlanan bir projeyi yönettim.',
-          altAccepted: ['I handle pressure well, I led a project that finished early', 'I’m good under pressure, my last project shipped early'],
+          altAccepted: ['Ich kann gut mit Druck umgehen mein Projekt war früher fertig', 'Ich bin gut unter Druck mein letztes Projekt war früh fertig'],
           next: 'weakness' },
         { id: 'communication', intentionTr: 'İletişim gücünü örnekle', tone: 'formal', difficulty: 'hard', xp: 18,
-          sentence: 'Communication. I often explain technical ideas so that anyone can understand them.',
+          sentence: 'Kommunikation. Ich erkläre technische Ideen oft so, dass jeder sie verstehen kann.',
           translation: 'İletişim. Teknik fikirleri herkesin anlayabileceği şekilde sık sık açıklarım.',
-          altAccepted: ['I’m a good communicator, I explain technical things clearly', 'Communication, I make complex ideas simple'],
+          altAccepted: ['Ich kommuniziere gut und erkläre technische Dinge klar', 'Kommunikation ich mache komplexe Ideen einfach'],
           next: 'weakness' }
       ]
     },
     weakness: {
       id: 'weakness', speakerId: 'carter', emotion: 'thinking',
-      text: 'And, honestly, what’s a weakness you’re working on?',
+      text: 'Und, ehrlich gesagt — an welcher Schwäche arbeiten Sie gerade?',
       translation: 'Peki, dürüstçe, üzerinde çalıştığınız bir zayıflık nedir?',
       choices: [
         { id: 'honest_weakness', intentionTr: 'Dürüst ama olgun bir zayıflık ver', tone: 'formal', difficulty: 'hard', xp: 20,
-          sentence: 'I used to take on too much myself, but I’m learning to delegate more.',
+          sentence: 'Früher habe ich zu viel selbst übernommen, aber ich lerne, mehr zu delegieren.',
           translation: 'Eskiden her şeyi kendim üstlenirdim ama daha fazla yetki devretmeyi öğreniyorum.',
-          altAccepted: ['I took on too much, now I’m learning to delegate', 'I tend to do everything myself, but I’m getting better at delegating'],
+          altAccepted: ['Ich habe zu viel übernommen jetzt lerne ich zu delegieren', 'Ich mache gern alles selbst aber ich werde besser im Delegieren'],
           next: 'questions', relationshipEffect: 1 },
         { id: 'cliche', intentionTr: 'Klişe “çok çalışıyorum” yanıtı ver', tone: 'direct', difficulty: 'medium', xp: 12,
-          sentence: 'Honestly, I think I just work too hard sometimes.',
+          sentence: 'Ehrlich gesagt glaube ich, ich arbeite manchmal einfach zu viel.',
           translation: 'Açıkçası, sanırım bazen sadece çok fazla çalışıyorum.',
-          altAccepted: ['I work too hard sometimes', 'My weakness is that I work too much'],
+          altAccepted: ['Ich arbeite manchmal zu viel', 'Meine Schwäche ist dass ich zu viel arbeite'],
           next: 'questions_flat' }
       ]
     },
     questions: {
       id: 'questions', speakerId: 'carter', emotion: 'happy',
-      text: 'That’s a thoughtful answer. Do you have any questions for me?',
+      text: 'Das ist eine durchdachte Antwort. Haben Sie Fragen an mich?',
       translation: 'Bu düşünceli bir cevap. Bana sormak istediğiniz bir şey var mı?',
       choices: [
         { id: 'ask_team', intentionTr: 'Ekip hakkında bir soru sor', tone: 'formal', difficulty: 'hard', xp: 18,
-          sentence: 'Yes — what does success look like in this role in the first six months?',
+          sentence: 'Ja — wie sieht Erfolg in dieser Position in den ersten sechs Monaten aus?',
           translation: 'Evet — bu rolde ilk altı ayda başarı neye benzer?',
-          altAccepted: ['What does success look like in the first six months', 'How would you measure success in this role early on'],
+          altAccepted: ['Wie sieht Erfolg in den ersten sechs Monaten aus', 'Woran messen Sie Erfolg in dieser Rolle am Anfang'],
           next: 'end_strong', relationshipEffect: 2 },
         { id: 'no_questions', intentionTr: 'Sorunun olmadığını söyle', tone: 'polite', difficulty: 'easy', xp: 10,
-          sentence: 'No, I think you’ve covered everything. Thank you.',
+          sentence: 'Nein, ich glaube, Sie haben alles erklärt. Vielen Dank.',
           translation: 'Hayır, sanırım her şeyi anlattınız. Teşekkürler.',
-          altAccepted: ['No, you covered everything, thanks', 'I don’t have questions, thank you'],
+          altAccepted: ['Nein Sie haben alles erklärt danke', 'Ich habe keine Fragen vielen Dank'],
           next: 'end_solid' }
       ]
     },
     questions_flat: {
       id: 'questions_flat', speakerId: 'carter', emotion: 'neutral',
-      text: 'Hmm, that’s a common answer. Well — do you have any questions for me?',
+      text: 'Hmm, das hört man oft. Nun — haben Sie Fragen an mich?',
       translation: 'Hmm, bu yaygın bir cevap. Peki — bana sormak istediğiniz bir şey var mı?',
       choices: [
         { id: 'recover', intentionTr: 'Güçlü bir soruyla toparla', tone: 'formal', difficulty: 'hard', xp: 18,
-          sentence: 'I do — how would you describe the team I’d be working with?',
+          sentence: 'Ja — wie würden Sie das Team beschreiben, mit dem ich arbeiten würde?',
           translation: 'Evet — birlikte çalışacağım ekibi nasıl tanımlarsınız?',
-          altAccepted: ['How would you describe the team', 'What is the team like that I’d join'],
+          altAccepted: ['Wie würden Sie das Team beschreiben', 'Wie ist das Team in das ich käme'],
           next: 'end_solid', relationshipEffect: 1 },
         { id: 'no_q2', intentionTr: 'Soru sorma', tone: 'polite', difficulty: 'easy', xp: 8,
-          sentence: 'No, nothing for now. Thank you for your time.',
+          sentence: 'Nein, im Moment nicht. Danke für Ihre Zeit.',
           translation: 'Hayır, şimdilik yok. Zaman ayırdığınız için teşekkürler.',
-          altAccepted: ['No questions, thanks for your time', 'Nothing right now, thank you'],
+          altAccepted: ['Keine Fragen danke für Ihre Zeit', 'Gerade nicht vielen Dank'],
           next: 'end_neutral' }
       ]
     }
   },
   endings: {
-    end_strong: { id: 'end_strong', kind: 'excellent', title: 'A standout interview', titleTr: 'Öne çıkan bir görüşme',
-      text: 'Structured answers, an honest weakness, and a sharp closing question. Ms. Carter is impressed.',
+    end_strong: { id: 'end_strong', kind: 'excellent', title: 'Ein herausragendes Gespräch', titleTr: 'Öne çıkan bir görüşme',
+      text: 'Strukturierte Antworten, eine ehrliche Schwäche und eine kluge Abschlussfrage. Frau Carter ist beeindruckt.',
       translation: 'Düzenli cevaplar, dürüst bir zayıflık ve keskin bir kapanış sorusu. Ms. Carter etkilendi.',
       relationshipEffect: 2, coins: 20 },
-    end_solid: { id: 'end_solid', kind: 'success', title: 'A solid interview', titleTr: 'Sağlam bir görüşme',
-      text: 'You handled the questions well and came across as capable. A strong showing.',
+    end_solid: { id: 'end_solid', kind: 'success', title: 'Ein solides Gespräch', titleTr: 'Sağlam bir görüşme',
+      text: 'Du hast die Fragen gut gemeistert und kompetent gewirkt. Ein starker Auftritt.',
       translation: 'Soruları iyi yönettin ve yetenekli göründün. Güçlü bir performans.',
       relationshipEffect: 1, coins: 12 },
-    end_neutral: { id: 'end_neutral', kind: 'neutral', title: 'A fair interview', titleTr: 'İyi bir görüşme',
-      text: 'You got through it, but a few answers were a bit safe. Ask a strong closing question next time — replay and try!',
+    end_neutral: { id: 'end_neutral', kind: 'neutral', title: 'Ein ordentliches Gespräch', titleTr: 'İyi bir görüşme',
+      text: 'Du bist durchgekommen, aber einige Antworten waren etwas vorsichtig. Stell nächstes Mal eine starke Abschlussfrage — spiel es noch einmal!',
       translation: 'Atlattın ama birkaç cevap biraz temkinliydi. Bir dahaki sefere güçlü bir kapanış sorusu sor — tekrar oyna ve dene!',
       coins: 6 }
   }
@@ -116,77 +116,77 @@ export const jobInterview = createScenario({
 // ── Workplace misunderstanding (B1) ─────────────────────────────────────────
 export const workplaceMisunderstanding = createScenario({
   id: 'workplace-misunderstanding',
-  title: 'Clearing up a misunderstanding',
+  title: 'Ein Missverständnis klären',
   titleTr: 'Bir yanlış anlaşılmayı gidermek',
   environmentId: 'workplace', sceneType: 'formal-office', level: 'B1',
-  goal: 'Fix a mix-up with a coworker without making it worse.',
+  goal: 'Kläre ein Missverständnis mit einem Kollegen, ohne es schlimmer zu machen.',
   goalTr: 'Bir iş arkadaşıyla yaşanan karışıklığı daha kötüye götürmeden çöz.',
   npcIds: ['raj'],
   startNodeId: 'start',
   nodes: {
     start: {
       id: 'start', speakerId: 'raj', emotion: 'concerned',
-      text: 'Hey, I thought you were sending the report to the client yesterday. They just emailed asking where it is.',
+      text: 'Hey, ich dachte, du schickst dem Kunden gestern den Bericht. Sie haben gerade gemailt und gefragt, wo er bleibt.',
       translation: 'Selam, raporu dün müşteriye göndereceğini sanıyordum. Az önce nerede olduğunu sorarak e-posta attılar.',
       choices: [
         { id: 'clarify', intentionTr: 'Kibarca yanlış anlaşıldığını açıkla', tone: 'polite', difficulty: 'medium', xp: 14,
-          sentence: 'Oh, I think there’s been a mix-up — I understood that you were sending it.',
+          sentence: 'Oh, ich glaube, da gab es ein Missverständnis — ich hatte verstanden, dass du ihn schickst.',
           translation: 'Ah, sanırım bir karışıklık olmuş — onu senin göndereceğini anlamıştım.',
-          altAccepted: ['I thought you were sending it', 'There’s a misunderstanding, I understood you would send it'],
+          altAccepted: ['Ich dachte du schickst ihn', 'Da ist ein Missverständnis ich dachte du sendest ihn'],
           next: 'check_email' },
         { id: 'defensive', intentionTr: 'Savunmaya geç', tone: 'direct', difficulty: 'medium', xp: 12,
-          sentence: 'That wasn’t my job. Nobody told me to send it.',
+          sentence: 'Das war nicht meine Aufgabe. Niemand hat mir gesagt, dass ich ihn schicken soll.',
           translation: 'Bu benim işim değildi. Kimse bana göndermemi söylemedi.',
-          altAccepted: ['It wasn’t my task, no one told me', 'That’s not my job, nobody asked me'],
+          altAccepted: ['Das war nicht mein Job niemand hat es mir gesagt', 'Das ist nicht meine Aufgabe keiner hat mich gefragt'],
           next: 'tension' }
       ]
     },
     check_email: {
       id: 'check_email', speakerId: 'raj', emotion: 'thinking',
-      text: 'Really? Let me check the thread… Ah, you’re right, the message wasn’t clear. My mistake. What should we do now?',
+      text: 'Wirklich? Ich schaue mal in den Verlauf… Ah, du hast recht, die Nachricht war nicht eindeutig. Mein Fehler. Was machen wir jetzt?',
       translation: 'Gerçekten mi? Yazışmaya bakayım… Ah, haklısın, mesaj net değildi. Benim hatam. Şimdi ne yapmalıyız?',
       choices: [
         { id: 'take_action', intentionTr: 'Hemen çözüm öner', tone: 'friendly', difficulty: 'medium', xp: 16,
-          sentence: 'No problem. I’ll send it right now and apologize to the client for the delay.',
+          sentence: 'Kein Problem. Ich schicke ihn sofort und entschuldige mich beim Kunden für die Verzögerung.',
           translation: 'Sorun değil. Hemen gönderip gecikme için müşteriden özür dilerim.',
-          altAccepted: ['I’ll send it now and apologize for the delay', 'Let me send it right away and say sorry to the client'],
+          altAccepted: ['Ich schicke ihn jetzt und entschuldige mich für die Verzögerung', 'Ich sende ihn sofort und sage dem Kunden sorry'],
           next: 'end_teamwork', relationshipEffect: 2 },
         { id: 'share_blame', intentionTr: 'Birlikte hallederiz de', tone: 'friendly', difficulty: 'hard', xp: 18,
-          sentence: 'These things happen. Let’s both reply so the client knows we’re on it.',
+          sentence: 'So was passiert. Lass uns beide antworten, damit der Kunde weiß, dass wir dran sind.',
           translation: 'Olur böyle şeyler. İkimiz de yanıt verelim ki müşteri ilgilendiğimizi bilsin.',
-          altAccepted: ['Let’s both reply to the client', 'It happens, let’s both respond so they know we’re handling it'],
+          altAccepted: ['Antworten wir beide dem Kunden', 'Passiert lass uns beide antworten damit sie es wissen'],
           next: 'end_teamwork', relationshipEffect: 2 }
       ]
     },
     tension: {
       id: 'tension', speakerId: 'raj', emotion: 'concerned',
-      text: 'Okay, no need to snap. I’m not blaming you — I just want to fix it. Can we sort this out together?',
+      text: 'Okay, kein Grund, gleich so zu reagieren. Ich beschuldige dich nicht — ich will es nur lösen. Kriegen wir das zusammen hin?',
       translation: 'Tamam, ters çıkmana gerek yok. Seni suçlamıyorum — sadece düzeltmek istiyorum. Bunu birlikte çözebilir miyiz?',
       choices: [
         { id: 'apologize', intentionTr: 'Ters çıktığın için özür dile', tone: 'polite', difficulty: 'medium', xp: 16,
-          sentence: 'You’re right, sorry — I was a bit stressed. Yes, let’s fix it together.',
+          sentence: 'Du hast recht, entschuldige — ich war etwas gestresst. Ja, lösen wir es zusammen.',
           translation: 'Haklısın, özür dilerim — biraz stresliydim. Evet, birlikte çözelim.',
-          altAccepted: ['Sorry, I was stressed, let’s fix it together', 'You’re right, I’m sorry, let’s sort it out'],
+          altAccepted: ['Sorry ich war gestresst lösen wir es zusammen', 'Du hast recht tut mir leid klären wir das'],
           next: 'end_recovered', relationshipEffect: 1 },
         { id: 'stay_cold', intentionTr: 'Soğuk kal ama işi yap', tone: 'direct', difficulty: 'easy', xp: 10,
-          sentence: 'Fine. I’ll send the report now.',
+          sentence: 'Gut. Ich schicke den Bericht jetzt.',
           translation: 'Tamam. Raporu şimdi göndereyim.',
-          altAccepted: ['Okay, I’ll send it now', 'Fine, sending it now'],
+          altAccepted: ['Okay ich schicke ihn jetzt', 'Gut wird sofort gesendet'],
           next: 'end_cold' }
       ]
     }
   },
   endings: {
-    end_teamwork: { id: 'end_teamwork', kind: 'problem-solved', title: 'Sorted as a team', titleTr: 'Ekip olarak çözüldü',
-      text: 'You stayed calm, cleared up the mix-up, and offered a solution. Raj is glad to work with you.',
+    end_teamwork: { id: 'end_teamwork', kind: 'problem-solved', title: 'Im Team gelöst', titleTr: 'Ekip olarak çözüldü',
+      text: 'Du bist ruhig geblieben, hast das Missverständnis geklärt und eine Lösung angeboten. Raj arbeitet gern mit dir.',
       translation: 'Sakin kaldın, karışıklığı giderdin ve bir çözüm önerdin. Raj seninle çalışmaktan memnun.',
       relationshipEffect: 1, coins: 16 },
-    end_recovered: { id: 'end_recovered', kind: 'relationship', title: 'Recovered well', titleTr: 'İyi toparlandı',
-      text: 'You reacted defensively at first, but apologized and turned it around. Knowing how to repair a moment is real skill.',
+    end_recovered: { id: 'end_recovered', kind: 'relationship', title: 'Gut aufgefangen', titleTr: 'İyi toparlandı',
+      text: 'Du hast erst defensiv reagiert, dich dann aber entschuldigt und die Kurve gekriegt. Einen Moment reparieren zu können ist echtes Können.',
       translation: 'Önce savunmaya geçtin ama özür dileyip durumu düzelttin. Bir anı onarmayı bilmek gerçek bir beceri.',
       relationshipEffect: 1, coins: 12 },
-    end_cold: { id: 'end_cold', kind: 'neutral', title: 'The work got done', titleTr: 'İş halledildi',
-      text: 'The report went out, but the mood stayed cool. Next time, try clearing the air — replay and see the difference.',
+    end_cold: { id: 'end_cold', kind: 'neutral', title: 'Die Arbeit wurde erledigt', titleTr: 'İş halledildi',
+      text: 'Der Bericht ging raus, aber die Stimmung blieb kühl. Versuch nächstes Mal, die Luft zu klären — spiel es noch einmal und sieh den Unterschied.',
       translation: 'Rapor gönderildi ama hava soğuk kaldı. Bir dahaki sefere ortamı yumuşatmayı dene — tekrar oyna ve farkı gör.',
       coins: 5 }
   }

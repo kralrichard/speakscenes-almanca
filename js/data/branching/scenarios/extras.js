@@ -1,4 +1,4 @@
-import { createScenario } from '../scenarioSchema.js?v=5';
+import { createScenario } from '../scenarioSchema.js?v=6';
 
 // Extra scenarios that add depth to existing environments (hotel, airport,
 // restaurant) so each place has more than one thing to do.
@@ -6,57 +6,57 @@ import { createScenario } from '../scenarioSchema.js?v=5';
 // ── Hotel: asking for amenities (A1) ────────────────────────────────────────
 export const hotelAmenities = createScenario({
   id: 'hotel-amenities',
-  title: 'Wi-Fi, towels and breakfast',
+  title: 'WLAN, Handtücher und Frühstück',
   titleTr: 'Wi-Fi, havlu ve kahvaltı',
   environmentId: 'hotel', sceneType: 'hotel-lobby', level: 'A1',
-  goal: 'Ask reception for the little things you need.',
+  goal: 'Bitte die Rezeption um die kleinen Dinge, die du brauchst.',
   goalTr: 'Resepsiyondan ihtiyacın olan küçük şeyleri iste.',
   npcIds: ['grace'],
   startNodeId: 'start',
   nodes: {
     start: {
       id: 'start', speakerId: 'grace', emotion: 'friendly',
-      text: 'Hello again! Is everything alright with your room?',
+      text: 'Hallo nochmal! Ist mit Ihrem Zimmer alles in Ordnung?',
       translation: 'Tekrar merhaba! Odanızla ilgili her şey yolunda mı?',
       choices: [
         { id: 'wifi', intentionTr: 'Wi-Fi şifresini sor', tone: 'polite', difficulty: 'easy', xp: 10,
-          sentence: 'Yes, thanks. Could I have the Wi-Fi password?',
+          sentence: 'Ja, danke. Könnte ich das WLAN-Passwort haben?',
           translation: 'Evet, teşekkürler. Wi-Fi şifresini alabilir miyim?',
-          altAccepted: ['What’s the wifi password', 'Can I get the wifi password'],
+          altAccepted: ['Wie ist das WLAN-Passwort', 'Kann ich das WLAN-Passwort bekommen'],
           next: 'anything_else' },
         { id: 'towels', intentionTr: 'Fazladan havlu iste', tone: 'polite', difficulty: 'easy', xp: 10,
-          sentence: 'Could I get some extra towels, please?',
+          sentence: 'Könnte ich bitte ein paar extra Handtücher bekommen?',
           translation: 'Biraz fazladan havlu alabilir miyim, lütfen?',
-          altAccepted: ['Can I have extra towels', 'Some more towels please'],
+          altAccepted: ['Kann ich extra Handtücher haben', 'Noch ein paar Handtücher bitte'],
           next: 'anything_else' },
         { id: 'breakfast_time', intentionTr: 'Kahvaltı saatini sor', tone: 'polite', difficulty: 'medium', xp: 14,
-          sentence: 'What time is breakfast served in the morning?',
+          sentence: 'Um wie viel Uhr gibt es morgens Frühstück?',
           translation: 'Sabah kahvaltı saat kaçta veriliyor?',
-          altAccepted: ['When is breakfast served', 'What time does breakfast start'],
+          altAccepted: ['Wann wird das Frühstück serviert', 'Um wie viel Uhr beginnt das Frühstück'],
           next: 'anything_else' }
       ]
     },
     anything_else: {
       id: 'anything_else', speakerId: 'grace', emotion: 'happy',
-      text: 'Of course, I’ll sort that out right away. Is there anything else you need?',
+      text: 'Natürlich, das erledige ich sofort. Brauchen Sie sonst noch etwas?',
       translation: 'Tabii, hemen hallederim. Başka bir ihtiyacınız var mı?',
       choices: [
         { id: 'no_thanks', intentionTr: 'Hayır, teşekkür et', tone: 'friendly', difficulty: 'easy', xp: 10,
-          sentence: 'No, that’s everything. Thank you so much!',
+          sentence: 'Nein, das ist alles. Vielen Dank!',
           translation: 'Hayır, hepsi bu. Çok teşekkürler!',
-          altAccepted: ['That’s all, thank you', 'No thanks, that’s everything'],
+          altAccepted: ['Das ist alles danke', 'Nein danke das war alles'],
           next: 'end_helped', relationshipEffect: 1 },
         { id: 'ask_taxi', intentionTr: 'Taksi çağırmalarını iste', tone: 'polite', difficulty: 'medium', xp: 14,
-          sentence: 'Actually, could you call me a taxi for eight o’clock?',
+          sentence: 'Eigentlich ja — könnten Sie mir für acht Uhr ein Taxi rufen?',
           translation: 'Aslında, saat sekiz için bana bir taksi çağırır mısınız?',
-          altAccepted: ['Could you call a taxi for eight', 'Can you book me a taxi at eight'],
+          altAccepted: ['Könnten Sie ein Taxi für acht Uhr rufen', 'Können Sie mir ein Taxi für acht bestellen'],
           next: 'end_helped', relationshipEffect: 1 }
       ]
     }
   },
   endings: {
-    end_helped: { id: 'end_helped', kind: 'success', title: 'All sorted', titleTr: 'Her şey ayarlandı',
-      text: 'You asked for what you needed politely and clearly. Reception is happy to help.',
+    end_helped: { id: 'end_helped', kind: 'success', title: 'Alles geregelt', titleTr: 'Her şey ayarlandı',
+      text: 'Du hast höflich und klar um das gebeten, was du brauchst. Die Rezeption hilft gern.',
       translation: 'İhtiyacını kibar ve net biçimde istedin. Resepsiyon yardımcı olmaktan memnun.',
       relationshipEffect: 1, coins: 10 }
   }
@@ -65,52 +65,52 @@ export const hotelAmenities = createScenario({
 // ── Airport: passport control (B1) ──────────────────────────────────────────
 export const passportControl = createScenario({
   id: 'passport-control',
-  title: 'Passport control',
+  title: 'Passkontrolle',
   titleTr: 'Pasaport kontrolü',
   environmentId: 'airport', sceneType: 'airport', level: 'B1',
-  goal: 'Answer the officer’s questions clearly and calmly.',
+  goal: 'Beantworte die Fragen des Beamten klar und ruhig.',
   goalTr: 'Memurun sorularını net ve sakin yanıtla.',
   npcIds: ['omar'],
   startNodeId: 'start',
   nodes: {
     start: {
       id: 'start', speakerId: 'omar', emotion: 'formal',
-      text: 'Passport, please. What’s the purpose of your visit?',
+      text: 'Den Pass, bitte. Was ist der Zweck Ihrer Reise?',
       translation: 'Pasaport, lütfen. Ziyaretinizin amacı nedir?',
       choices: [
         { id: 'tourism', intentionTr: 'Turizm için geldiğini söyle', tone: 'polite', difficulty: 'medium', xp: 14,
-          sentence: 'I’m here on holiday for two weeks.',
+          sentence: 'Ich bin für zwei Wochen im Urlaub hier.',
           translation: 'İki haftalığına tatil için buradayım.',
-          altAccepted: ['I’m here on vacation for two weeks', 'On holiday, for two weeks'],
+          altAccepted: ['Ich mache hier zwei Wochen Urlaub', 'Im Urlaub für zwei Wochen'],
           next: 'where_staying' },
         { id: 'business', intentionTr: 'İş için geldiğini söyle', tone: 'formal', difficulty: 'hard', xp: 18,
-          sentence: 'I’m here for business — a three-day conference.',
+          sentence: 'Ich bin geschäftlich hier — eine dreitägige Konferenz.',
           translation: 'İş için buradayım — üç günlük bir konferans.',
-          altAccepted: ['I’m here for a business conference', 'For business, a three-day conference'],
+          altAccepted: ['Ich bin für eine Geschäftskonferenz hier', 'Geschäftlich eine dreitägige Konferenz'],
           next: 'where_staying' }
       ]
     },
     where_staying: {
       id: 'where_staying', speakerId: 'omar', emotion: 'neutral',
-      text: 'And where will you be staying?',
+      text: 'Und wo werden Sie wohnen?',
       translation: 'Peki nerede kalacaksınız?',
       choices: [
         { id: 'hotel', intentionTr: 'Otelde kalacağını söyle', tone: 'polite', difficulty: 'easy', xp: 10,
-          sentence: 'At the Sunrise Hotel, in the city center.',
+          sentence: 'Im Hotel Sunrise, im Stadtzentrum.',
           translation: 'Şehir merkezindeki Sunrise Otel’de.',
-          altAccepted: ['At the Sunrise Hotel downtown', 'In the Sunrise Hotel, city center'],
+          altAccepted: ['Im Hotel Sunrise in der Innenstadt', 'Im Sunrise Hotel Stadtzentrum'],
           next: 'end_through' },
         { id: 'friend', intentionTr: 'Bir arkadaşında kalacağını söyle', tone: 'polite', difficulty: 'medium', xp: 14,
-          sentence: 'I’ll be staying with a friend who lives here.',
+          sentence: 'Ich wohne bei einem Freund, der hier lebt.',
           translation: 'Burada yaşayan bir arkadaşımda kalacağım.',
-          altAccepted: ['With a friend who lives here', 'I’m staying at a friend’s place'],
+          altAccepted: ['Bei einem Freund der hier wohnt', 'Ich bleibe bei einem Freund'],
           next: 'end_through' }
       ]
     }
   },
   endings: {
-    end_through: { id: 'end_through', kind: 'success', title: 'Welcome to the country', titleTr: 'Ülkeye hoş geldin',
-      text: 'You answered clearly and calmly, and you’re through. Passport control is easy when you keep it simple.',
+    end_through: { id: 'end_through', kind: 'success', title: 'Willkommen im Land', titleTr: 'Ülkeye hoş geldin',
+      text: 'Du hast klar und ruhig geantwortet und bist durch. Die Passkontrolle ist leicht, wenn man es einfach hält.',
       translation: 'Net ve sakin yanıt verdin ve geçtin. Basit tutunca pasaport kontrolü kolaydır.',
       coins: 12 }
   }
@@ -119,70 +119,70 @@ export const passportControl = createScenario({
 // ── Restaurant: asking for the bill (A2) ────────────────────────────────────
 export const restaurantBill = createScenario({
   id: 'restaurant-bill',
-  title: 'Getting the bill',
+  title: 'Die Rechnung bekommen',
   titleTr: 'Hesabı istemek',
   environmentId: 'restaurant', sceneType: 'restaurant', level: 'A2',
-  goal: 'Finish your meal and pay the way you want.',
+  goal: 'Beende dein Essen und bezahle so, wie du möchtest.',
   goalTr: 'Yemeğini bitir ve istediğin şekilde öde.',
   npcIds: ['elena'],
   startNodeId: 'start',
   nodes: {
     start: {
       id: 'start', speakerId: 'elena', emotion: 'friendly',
-      text: 'How was everything? Can I get you anything else?',
+      text: 'Wie war alles? Kann ich Ihnen noch etwas bringen?',
       translation: 'Her şey nasıldı? Başka bir şey getirebilir miyim?',
       choices: [
         { id: 'bill', intentionTr: 'Hesabı iste', tone: 'polite', difficulty: 'easy', xp: 10,
-          sentence: 'It was lovely, thank you. Could we have the bill, please?',
+          sentence: 'Es war köstlich, danke. Könnten wir bitte die Rechnung haben?',
           translation: 'Çok güzeldi, teşekkürler. Hesabı alabilir miyiz, lütfen?',
-          altAccepted: ['Can we have the bill please', 'Could I get the check please'],
+          altAccepted: ['Können wir die Rechnung haben bitte', 'Die Rechnung bitte'],
           next: 'pay_how' },
         { id: 'dessert', intentionTr: 'Tatlı menüsünü sor', tone: 'friendly', difficulty: 'medium', xp: 14,
-          sentence: 'Everything was great! Could I see the dessert menu?',
+          sentence: 'Alles war großartig! Könnte ich die Dessertkarte sehen?',
           translation: 'Her şey harikaydı! Tatlı menüsünü görebilir miyim?',
-          altAccepted: ['Can I see the dessert menu', 'Do you have a dessert menu'],
+          altAccepted: ['Kann ich die Dessertkarte sehen', 'Haben Sie eine Dessertkarte'],
           next: 'dessert_node' }
       ]
     },
     dessert_node: {
       id: 'dessert_node', speakerId: 'elena', emotion: 'happy',
-      text: 'Of course! The chocolate cake is amazing. Shall I bring one?',
+      text: 'Natürlich! Der Schokoladenkuchen ist fantastisch. Soll ich einen bringen?',
       translation: 'Tabii! Çikolatalı kek muhteşem. Bir tane getireyim mi?',
       choices: [
         { id: 'yes_cake', intentionTr: 'Keki iste', tone: 'friendly', difficulty: 'easy', xp: 10,
-          sentence: 'Yes, the chocolate cake sounds perfect!',
+          sentence: 'Ja, der Schokoladenkuchen klingt perfekt!',
           translation: 'Evet, çikolatalı kek harika olur!',
-          altAccepted: ['Yes please, the chocolate cake', 'I’ll have the chocolate cake'],
+          altAccepted: ['Ja bitte den Schokoladenkuchen', 'Ich nehme den Schokoladenkuchen'],
           next: 'pay_how', relationshipEffect: 1 },
         { id: 'just_bill', intentionTr: 'Yok, sadece hesabı iste', tone: 'polite', difficulty: 'easy', xp: 10,
-          sentence: 'Maybe next time — just the bill, please.',
+          sentence: 'Vielleicht nächstes Mal — nur die Rechnung, bitte.',
           translation: 'Belki bir dahaki sefere — sadece hesap, lütfen.',
-          altAccepted: ['Just the bill please', 'No thanks, just the check'],
+          altAccepted: ['Nur die Rechnung bitte', 'Nein danke nur die Rechnung'],
           next: 'pay_how' }
       ]
     },
     pay_how: {
       id: 'pay_how', speakerId: 'elena', emotion: 'neutral',
-      text: 'Here you are. Will you be paying by card or cash?',
+      text: 'Bitte sehr. Zahlen Sie mit Karte oder bar?',
       translation: 'Buyurun. Kartla mı yoksa nakit mi ödeyeceksiniz?',
       choices: [
         { id: 'card', intentionTr: 'Kartla öde', tone: 'casual', difficulty: 'easy', xp: 10,
-          sentence: 'By card, please. And could I get a receipt?',
+          sentence: 'Mit Karte, bitte. Und könnte ich eine Quittung bekommen?',
           translation: 'Kartla, lütfen. Bir de fiş alabilir miyim?',
-          altAccepted: ['By card, and a receipt please', 'Card please, with a receipt'],
+          altAccepted: ['Mit Karte und eine Quittung bitte', 'Karte bitte mit Quittung'],
           next: 'end_paid' },
         { id: 'cash_tip', intentionTr: 'Nakit öde ve bahşiş bırak', tone: 'friendly', difficulty: 'medium', xp: 14,
-          sentence: 'Cash, please. Keep the change — the service was great.',
+          sentence: 'Bar, bitte. Der Rest ist für Sie — der Service war großartig.',
           translation: 'Nakit, lütfen. Üstü kalsın — hizmet harikaydı.',
-          altAccepted: ['Cash, keep the change', 'I’ll pay cash, keep the change'],
+          altAccepted: ['Bar der Rest ist für Sie', 'Ich zahle bar stimmt so'],
           next: 'end_paid', relationshipEffect: 2 }
       ]
     }
   },
   endings: {
-    end_paid: { id: 'end_paid', kind: 'success', title: 'Paid and done', titleTr: 'Ödendi, bitti',
-      text: 'You finished your meal and paid smoothly. A complete restaurant experience in English!',
-      translation: 'Yemeğini bitirdin ve sorunsuz ödedin. İngilizce ile eksiksiz bir restoran deneyimi!',
+    end_paid: { id: 'end_paid', kind: 'success', title: 'Bezahlt und fertig', titleTr: 'Ödendi, bitti',
+      text: 'Du hast dein Essen beendet und reibungslos bezahlt. Ein komplettes Restauranterlebnis auf Deutsch!',
+      translation: 'Yemeğini bitirdin ve sorunsuz ödedin. Almanca ile eksiksiz bir restoran deneyimi!',
       relationshipEffect: 1, coins: 10 }
   }
 });
