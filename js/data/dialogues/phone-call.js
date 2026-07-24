@@ -1,4 +1,4 @@
-import { createDialogue } from '../dialogueSchema.js?v=6';
+import { createDialogue } from '../dialogueSchema.js?v=7';
 
 export const PHONE_CALL_DIALOGUES = [
   createDialogue({
@@ -20,7 +20,7 @@ export const PHONE_CALL_DIALOGUES = [
       { speaker: 'A', text: 'Hey, it’s Sofia. I thought we agreed to meet at two — I waited for twenty minutes.', translation_tr: 'Merhaba, ben Sofia. Saat ikide buluşmayı kararlaştırdığımızı sanıyordum — yirmi dakika bekledim.', emotion: 'concerned', register: 'neutral' },
       {
         speaker: 'B', expected: 'I’m really sorry, I think there’s been a mix-up. I had three o’clock in my calendar.',
-        altAccepted: ['I’m so sorry, I must have misunderstood — I had three o’clock written down.', 'Sorry about that, I think we got our wires crossed — I thought it was three.'],
+        altAccepted: ['I’m so sorry, I must have misunderstood, I had three o’clock written down.', 'Sorry about that, I think we got our wires crossed, I thought it was three.'],
         translation_tr: 'Gerçekten özür dilerim, sanırım bir karışıklık olmuş. Ben takvimimde üçü yazmıştım.',
         register: 'neutral', ipa: '/aɪm ˈrɪəli ˈsɒri aɪ θɪŋk ðɛərz bɪn ə mɪksˈʌp aɪ hæd θriː əˈklɒk ɪn maɪ ˈkælɪndər/',
         grammar: [

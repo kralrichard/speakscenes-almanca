@@ -1,4 +1,4 @@
-import { createDialogue } from '../dialogueSchema.js?v=6';
+import { createDialogue } from '../dialogueSchema.js?v=7';
 
 export const AIRPORT_DIALOGUES = [
   createDialogue({
@@ -89,7 +89,7 @@ export const AIRPORT_DIALOGUES = [
       { speaker: 'A', text: 'Hello, how can I help you?', translation_tr: 'Merhaba, size nasıl yardımcı olabilirim?', emotion: 'neutral', register: 'formal' },
       {
         speaker: 'B', expected: 'I just missed my flight to Berlin. Is there anything you can do?',
-        altAccepted: ['I’ve just missed my flight to Berlin — can you help me?', 'I missed my flight to Berlin. What are my options?'],
+        altAccepted: ['I’ve just missed my flight to Berlin, can you help me?', 'I missed my flight to Berlin. What are my options?'],
         translation_tr: 'Berlin’e olan uçağımı az önce kaçırdım. Yapabileceğiniz bir şey var mı?',
         register: 'neutral', ipa: '/aɪ dʒʌst mɪst maɪ flaɪt tuː bərˈlɪn ɪz ðɛər ˈɛnɪθɪŋ juː kæn duː/',
         grammar: [

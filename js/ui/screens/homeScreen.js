@@ -1,9 +1,9 @@
-import { progressStore } from '../../progress/progressStore.js?v=6';
-import { reviewSystem } from '../../progress/reviewSystem.js?v=6';
-import { sessionStore } from '../../progress/sessionStore.js?v=6';
-import { ALL_DIALOGUES, getDialogueById } from '../../data/dialogues/index.js?v=6';
-import { getLocation } from '../../data/locations.js?v=6';
-import { navigate } from '../router.js?v=6';
+import { progressStore } from '../../progress/progressStore.js?v=7';
+import { reviewSystem } from '../../progress/reviewSystem.js?v=7';
+import { sessionStore } from '../../progress/sessionStore.js?v=7';
+import { ALL_DIALOGUES, getDialogueById } from '../../data/dialogues/index.js?v=7';
+import { getLocation } from '../../data/locations.js?v=7';
+import { navigate } from '../router.js?v=7';
 
 function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 

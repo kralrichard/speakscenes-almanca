@@ -19,7 +19,7 @@
 import {
   FUNCTION_WORDS as FN_LIST, NEGATION_WORDS as NEG_LIST, NUMBER_WORDS as NUM_LIST,
   FILLER_WORDS as FILL_LIST, DIGIT_WORDS, CONTRACTIONS, ASR_EQUIVALENTS
-} from '../data/shorts/langConfig.js?v=6';
+} from '../data/shorts/langConfig.js?v=7';
 
 export const STRICTNESS_THRESHOLDS = {
   relaxed:        { wordAccuracy: 60, clarity: 0,  fluency: 0,  allowMissingFn: true  },
@@ -44,6 +44,9 @@ const EQUIV = new Map(ASR_EQUIVALENTS.map(([a, b]) => [fold(a.toLowerCase()), fo
 
 function normalizeSentence(sentence) {
   let s = sentence.toLowerCase().normalize('NFC').replace(/[’‘]/g, "'");
+  // Dashes never correspond to spoken words -- drop them before contraction
+  // expansion so they cannot become unmatchable tokens. See tokenize().
+  s = s.replace(/[-‐-―−]+/g, ' ');
   for (const [re, expansion] of CONTRACTIONS) s = s.replace(re, expansion);
   return fold(s);
 }

@@ -17,7 +17,7 @@
 // XP so replaying an easy branch can't inflate progress.
 // ============================================================================
 
-import { loadJSON, saveJSON } from './storage.js?v=6';
+import { loadJSON, saveJSON } from './storage.js?v=7';
 
 const KEY = 'edapp:story:v1';
 const PRACTICE_XP = 3;

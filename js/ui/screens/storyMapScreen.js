@@ -3,12 +3,12 @@
 // plus a global level filter (A0–C2, "All"). Reuses the app shell + design
 // system; new content type, no changes to the original screens.
 
-import { STORY_ENVIRONMENTS, scenariosForEnvironment, ALL_SCENARIOS } from '../../data/branching/scenarios/index.js?v=6';
-import { CEFR_LEVELS, ENDING_KINDS } from '../../data/branching/scenarioSchema.js?v=6';
-import { storyStore } from '../../progress/storyStore.js?v=6';
-import { getCharacter } from '../../data/branching/characters.js?v=6';
-import { navigate } from '../router.js?v=6';
-import { loadJSON, saveJSON } from '../../progress/storage.js?v=6';
+import { STORY_ENVIRONMENTS, scenariosForEnvironment, ALL_SCENARIOS } from '../../data/branching/scenarios/index.js?v=7';
+import { CEFR_LEVELS, ENDING_KINDS } from '../../data/branching/scenarioSchema.js?v=7';
+import { storyStore } from '../../progress/storyStore.js?v=7';
+import { getCharacter } from '../../data/branching/characters.js?v=7';
+import { navigate } from '../router.js?v=7';
+import { loadJSON, saveJSON } from '../../progress/storage.js?v=7';
 
 function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 
@@ -121,7 +121,7 @@ function scenarioCard(s, st) {
 }
 
 function showAchievements(container) {
-  import('../../progress/storyStore.js?v=6').then(({ ACHIEVEMENTS, storyStore }) => {
+  import('../../progress/storyStore.js?v=7').then(({ ACHIEVEMENTS, storyStore }) => {
     const unlocked = new Set(storyStore.getState().achievements);
     const rows = ACHIEVEMENTS.map(a => `
       <li class="achv-row ${unlocked.has(a.id) ? 'on' : 'off'}">

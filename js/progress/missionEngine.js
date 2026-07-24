@@ -1,9 +1,9 @@
 // Pure logic layer that checks mission requirements against a just-completed
 // dialogue or mini-game and applies rewards to worldStore. Not a store
 // itself -- it only reads js/data/missions.js and writes worldStore.
-import { MISSIONS } from '../data/missions.js?v=6';
-import { worldStore } from './worldStore.js?v=6';
-import { progressStore } from './progressStore.js?v=6';
+import { MISSIONS } from '../data/missions.js?v=7';
+import { worldStore } from './worldStore.js?v=7';
+import { progressStore } from './progressStore.js?v=7';
 
 function applyRewards(mission) {
   const r = mission.rewards || {};

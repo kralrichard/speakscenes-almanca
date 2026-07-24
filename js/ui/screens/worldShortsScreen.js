@@ -6,17 +6,17 @@
 // start), matching the original onboarding in one step.
 // ============================================================================
 
-import { worldStore } from '../../progress/worldStore.js?v=6';
-import { shortsStore } from '../../progress/shortsStore.js?v=6';
-import { shortsCount } from '../../data/shorts/sentenceBank.js?v=6';
-import { SHORT_LOCATIONS } from '../../data/shorts/shortsLocations.js?v=6';
-import { GROWTH_STAGES } from '../../data/worldLevels.js?v=6';
-import { renderPlayerAvatar } from '../components/avatarBuilder.js?v=6';
-import { APP_LANG } from '../../data/shorts/langConfig.js?v=6';
-import { MINI_GAME_TYPES } from '../../data/miniGames/index.js?v=6';
-import { ALL_SCENARIOS } from '../../data/branching/scenarios/index.js?v=6';
-import { PHRASEBOOK_COUNT } from '../../data/branching/phrasebook.js?v=6';
-import { navigate } from '../router.js?v=6';
+import { worldStore } from '../../progress/worldStore.js?v=7';
+import { shortsStore } from '../../progress/shortsStore.js?v=7';
+import { shortsCount } from '../../data/shorts/sentenceBank.js?v=7';
+import { SHORT_LOCATIONS } from '../../data/shorts/shortsLocations.js?v=7';
+import { GROWTH_STAGES } from '../../data/worldLevels.js?v=7';
+import { renderPlayerAvatar } from '../components/avatarBuilder.js?v=7';
+import { APP_LANG } from '../../data/shorts/langConfig.js?v=7';
+import { MINI_GAME_TYPES } from '../../data/miniGames/index.js?v=7';
+import { ALL_SCENARIOS } from '../../data/branching/scenarios/index.js?v=7';
+import { PHRASEBOOK_COUNT } from '../../data/branching/phrasebook.js?v=7';
+import { navigate } from '../router.js?v=7';
 
 function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 

@@ -1,4 +1,4 @@
-import { createScenario } from '../scenarioSchema.js?v=6';
+import { createScenario } from '../scenarioSchema.js?v=7';
 
 // ── Café order (A1) ─────────────────────────────────────────────────────────
 export const cafeOrder = createScenario({
@@ -93,7 +93,7 @@ export const cafeMeetup = createScenario({
       translation: 'Aman tanrım — bu gerçekten sen misin? Ne kadar oldu, beş yıl mı?',
       choices: [
         { id: 'warm', intentionTr: 'Sıcak bir şekilde karşılık ver', tone: 'friendly', difficulty: 'medium', xp: 14,
-          sentence: 'Hannah! Ich kann es nicht glauben — du siehst genauso aus wie früher!',
+          sentence: 'Hannah! Ich kann es nicht glauben, du siehst genauso aus wie früher!',
           translation: 'Hannah! İnanamıyorum — tıpatıp aynısın!',
           altAccepted: ['Ich kann es nicht glauben, du siehst gleich aus', 'Hannah, schön dich zu sehen'],
           next: 'whats_new', relationshipEffect: 2 },
@@ -115,7 +115,7 @@ export const cafeMeetup = createScenario({
           altAccepted: ['Ich habe vor zwei Jahren meine eigene Firma gegründet', 'Ich führe jetzt meine eigene Firma'],
           next: 'plans', relationshipEffect: 1 },
         { id: 'travel', intentionTr: 'Seyahatlerinden bahset', tone: 'friendly', difficulty: 'hard', xp: 18,
-          sentence: 'Ehrlich gesagt bin ich viel gereist — ich bin gerade aus Japan zurück.',
+          sentence: 'Ehrlich gesagt bin ich viel gereist, ich bin gerade aus Japan zurück.',
           translation: 'Açıkçası çok seyahat ediyordum — daha yeni Japonya’dan döndüm.',
           altAccepted: ['Ich bin viel gereist und gerade aus Japan zurück', 'Ich komme gerade aus Japan zurück'],
           next: 'plans' }

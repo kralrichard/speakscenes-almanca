@@ -1,4 +1,4 @@
-import { createScenario } from '../scenarioSchema.js?v=6';
+import { createScenario } from '../scenarioSchema.js?v=7';
 
 // ── Job interview (B2) ──────────────────────────────────────────────────────
 export const jobInterview = createScenario({
@@ -68,7 +68,7 @@ export const jobInterview = createScenario({
       translation: 'Bu düşünceli bir cevap. Bana sormak istediğiniz bir şey var mı?',
       choices: [
         { id: 'ask_team', intentionTr: 'Ekip hakkında bir soru sor', tone: 'formal', difficulty: 'hard', xp: 18,
-          sentence: 'Ja — wie sieht Erfolg in dieser Position in den ersten sechs Monaten aus?',
+          sentence: 'Ja, wie sieht Erfolg in dieser Position in den ersten sechs Monaten aus?',
           translation: 'Evet — bu rolde ilk altı ayda başarı neye benzer?',
           altAccepted: ['Wie sieht Erfolg in den ersten sechs Monaten aus', 'Woran messen Sie Erfolg in dieser Rolle am Anfang'],
           next: 'end_strong', relationshipEffect: 2 },
@@ -85,7 +85,7 @@ export const jobInterview = createScenario({
       translation: 'Hmm, bu yaygın bir cevap. Peki — bana sormak istediğiniz bir şey var mı?',
       choices: [
         { id: 'recover', intentionTr: 'Güçlü bir soruyla toparla', tone: 'formal', difficulty: 'hard', xp: 18,
-          sentence: 'Ja — wie würden Sie das Team beschreiben, mit dem ich arbeiten würde?',
+          sentence: 'Ja, wie würden Sie das Team beschreiben, mit dem ich arbeiten würde?',
           translation: 'Evet — birlikte çalışacağım ekibi nasıl tanımlarsınız?',
           altAccepted: ['Wie würden Sie das Team beschreiben', 'Wie ist das Team in das ich käme'],
           next: 'end_solid', relationshipEffect: 1 },
@@ -130,7 +130,7 @@ export const workplaceMisunderstanding = createScenario({
       translation: 'Selam, raporu dün müşteriye göndereceğini sanıyordum. Az önce nerede olduğunu sorarak e-posta attılar.',
       choices: [
         { id: 'clarify', intentionTr: 'Kibarca yanlış anlaşıldığını açıkla', tone: 'polite', difficulty: 'medium', xp: 14,
-          sentence: 'Oh, ich glaube, da gab es ein Missverständnis — ich hatte verstanden, dass du ihn schickst.',
+          sentence: 'Oh, ich glaube, da gab es ein Missverständnis, ich hatte verstanden, dass du ihn schickst.',
           translation: 'Ah, sanırım bir karışıklık olmuş — onu senin göndereceğini anlamıştım.',
           altAccepted: ['Ich dachte du schickst ihn', 'Da ist ein Missverständnis ich dachte du sendest ihn'],
           next: 'check_email' },
@@ -164,7 +164,7 @@ export const workplaceMisunderstanding = createScenario({
       translation: 'Tamam, ters çıkmana gerek yok. Seni suçlamıyorum — sadece düzeltmek istiyorum. Bunu birlikte çözebilir miyiz?',
       choices: [
         { id: 'apologize', intentionTr: 'Ters çıktığın için özür dile', tone: 'polite', difficulty: 'medium', xp: 16,
-          sentence: 'Du hast recht, entschuldige — ich war etwas gestresst. Ja, lösen wir es zusammen.',
+          sentence: 'Du hast recht, entschuldige, ich war etwas gestresst. Ja, lösen wir es zusammen.',
           translation: 'Haklısın, özür dilerim — biraz stresliydim. Evet, birlikte çözelim.',
           altAccepted: ['Sorry ich war gestresst lösen wir es zusammen', 'Du hast recht tut mir leid klären wir das'],
           next: 'end_recovered', relationshipEffect: 1 },

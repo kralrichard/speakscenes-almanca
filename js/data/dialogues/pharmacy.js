@@ -1,4 +1,4 @@
-import { createDialogue } from '../dialogueSchema.js?v=6';
+import { createDialogue } from '../dialogueSchema.js?v=7';
 
 export const PHARMACY_DIALOGUES = [
   createDialogue({

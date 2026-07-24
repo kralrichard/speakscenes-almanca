@@ -3,14 +3,14 @@
 // app modules. Mutates no localStorage (growth test edits in-memory state and
 // restores it).
 
-import { buildShortsBank, levelBands, sentencesForLevel, shortForLevel, shortsCount, LEVEL_ORDER } from '../js/data/shorts/sentenceBank.js?v=6';
-import { shortsStore, GROWTH_THRESHOLDS } from '../js/progress/shortsStore.js?v=6';
-import { scoreAttempt } from '../js/speech/scorer.js?v=6';
-import { ALL_SCENARIOS, STORY_ENVIRONMENTS } from '../js/data/branching/scenarios/index.js?v=6';
-import { CHARACTERS } from '../js/data/branching/characters.js?v=6';
-import { PHRASEBOOK } from '../js/data/branching/phrasebook.js?v=6';
-import { BranchEngine } from '../js/engine/branchEngine.js?v=6';
-import { CEFR_LEVELS } from '../js/data/branching/scenarioSchema.js?v=6';
+import { buildShortsBank, levelBands, sentencesForLevel, shortForLevel, shortsCount, LEVEL_ORDER } from '../js/data/shorts/sentenceBank.js?v=7';
+import { shortsStore, GROWTH_THRESHOLDS } from '../js/progress/shortsStore.js?v=7';
+import { scoreAttempt } from '../js/speech/scorer.js?v=7';
+import { ALL_SCENARIOS, STORY_ENVIRONMENTS } from '../js/data/branching/scenarios/index.js?v=7';
+import { CHARACTERS } from '../js/data/branching/characters.js?v=7';
+import { PHRASEBOOK } from '../js/data/branching/phrasebook.js?v=7';
+import { BranchEngine } from '../js/engine/branchEngine.js?v=7';
+import { CEFR_LEVELS } from '../js/data/branching/scenarioSchema.js?v=7';
 
 const results = [];
 function test(name, fn) {

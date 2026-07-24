@@ -1,4 +1,4 @@
-import { createDialogue } from '../dialogueSchema.js?v=6';
+import { createDialogue } from '../dialogueSchema.js?v=7';
 
 export const TECH_STORE_DIALOGUES = [
   createDialogue({
@@ -48,7 +48,7 @@ export const TECH_STORE_DIALOGUES = [
       { speaker: 'A', text: 'No worries, I’ve got a couple of great options in that range. This one has a fast processor and a great screen.', translation_tr: 'Sorun değil, o aralıkta birkaç harika seçeneğim var. Bunun hızlı bir işlemcisi ve harika bir ekranı var.', emotion: 'friendly', register: 'informal' },
       {
         speaker: 'B', expected: 'That sounds great. Could I try it out first?',
-        altAccepted: ['That sounds good. Can I try it before I decide?', 'Sounds perfect — mind if I try it out?'],
+        altAccepted: ['That sounds good. Can I try it before I decide?', 'Sounds perfect, mind if I try it out?'],
         translation_tr: 'Kulağa harika geliyor. Önce deneyebilir miyim?',
         register: 'neutral', ipa: '/ðæt saʊndz greɪt kʊd aɪ traɪ ɪt aʊt fɜːrst/',
         grammar: [

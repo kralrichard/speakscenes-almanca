@@ -1,4 +1,4 @@
-import { createScenario } from '../scenarioSchema.js?v=6';
+import { createScenario } from '../scenarioSchema.js?v=7';
 
 // ── Hotel check-in (A2) — the flagship: 4 decision points, 4 endings ────────
 export const hotelCheckin = createScenario({
@@ -44,7 +44,7 @@ export const hotelCheckin = createScenario({
           altAccepted: ['Ich zahle mit Karte', 'Mit Karte bitte', 'Kann ich mit Karte zahlen'],
           next: 'room_ready', relationshipEffect: 1 },
         { id: 'ask_breakfast', intentionTr: 'Kahvaltının dahil olup olmadığını sor', tone: 'polite', difficulty: 'medium', xp: 14,
-          sentence: 'Vorher noch — ist das Frühstück im Preis inbegriffen?',
+          sentence: 'Vorher noch, ist das Frühstück im Preis inbegriffen?',
           translation: 'Ondan önce, kahvaltı fiyata dahil mi?',
           altAccepted: ['Ist das Frühstück inbegriffen', 'Ist Frühstück im Preis enthalten'],
           next: 'breakfast_info' }
@@ -61,7 +61,7 @@ export const hotelCheckin = createScenario({
           altAccepted: ['Ja bitte ich zahle mit Karte', 'Gerne mit Karte bitte'],
           next: 'room_ready', relationshipEffect: 1 },
         { id: 'ask_late', intentionTr: 'Geç çıkış isteyip istemediğini sor', tone: 'polite', difficulty: 'hard', xp: 18,
-          sentence: 'Noch eine Sache — wäre ein später Check-out möglich?',
+          sentence: 'Noch eine Sache, wäre ein später Check-out möglich?',
           translation: 'Bir şey daha — geç çıkış mümkün olur mu?',
           altAccepted: ['Ist ein später Check-out möglich', 'Könnte ich später auschecken'],
           next: 'late_checkout' }
@@ -102,7 +102,7 @@ export const hotelCheckin = createScenario({
       translation: 'Merhaba, ben nöbetçi müdürüm. Oda fiyatını düşüremem ama ücretsiz kahvaltı ekleyebilirim. Olur mu?',
       choices: [
         { id: 'accept_deal', intentionTr: 'Teklifi kabul et', tone: 'friendly', difficulty: 'medium', xp: 14,
-          sentence: 'Das ist sehr nett — ja, ich nehme das Zimmer mit Frühstück.',
+          sentence: 'Das ist sehr nett, ja, ich nehme das Zimmer mit Frühstück.',
           translation: 'Çok naziksiniz — evet, odayı kahvaltıyla alıyorum.',
           altAccepted: ['Ja ich nehme es mit Frühstück', 'Das passt ich nehme das Zimmer'],
           next: 'room_ready', relationshipEffect: 2 },

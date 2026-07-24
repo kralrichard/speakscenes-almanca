@@ -1,4 +1,4 @@
-import { createScenario } from '../scenarioSchema.js?v=6';
+import { createScenario } from '../scenarioSchema.js?v=7';
 
 // ── Restaurant order (A2) ───────────────────────────────────────────────────
 export const restaurantOrder = createScenario({
@@ -66,7 +66,7 @@ export const restaurantOrder = createScenario({
           altAccepted: ['Ja wenn es sicher ist', 'Gerne wenn die Küche es bestätigt'],
           next: 'sides', relationshipEffect: 1 },
         { id: 'something_else', intentionTr: 'Güvenli başka bir şey iste', tone: 'polite', difficulty: 'medium', xp: 14,
-          sentence: 'Um sicherzugehen — könnte ich stattdessen das gegrillte Hähnchen haben?',
+          sentence: 'Um sicherzugehen, könnte ich stattdessen das gegrillte Hähnchen haben?',
           translation: 'Güvenli olmak için, onun yerine ızgara tavuk alabilir miyim?',
           altAccepted: ['Ich nehme lieber das gegrillte Hähnchen', 'Kann ich stattdessen das Hähnchen haben'],
           next: 'sides' }
@@ -121,7 +121,7 @@ export const wrongOrder = createScenario({
       translation: 'Buyurun — bir dana burger. Afiyet olsun!',
       choices: [
         { id: 'polite_correct', intentionTr: 'Kibarca yanlış olduğunu söyle', tone: 'polite', difficulty: 'medium', xp: 14,
-          sentence: 'Entschuldigung, aber ich glaube, da ist ein Fehler — ich hatte den Veggie-Burger bestellt.',
+          sentence: 'Entschuldigung, aber ich glaube, da ist ein Fehler, ich hatte den Veggie-Burger bestellt.',
           translation: 'Pardon ama sanırım bir hata var — sebzeli burger sipariş etmiştim.',
           altAccepted: ['Ich hatte den Veggie-Burger bestellt nicht das', 'Ich glaube das ist falsch ich wollte den Veggie-Burger'],
           next: 'apology' },

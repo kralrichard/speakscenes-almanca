@@ -2,19 +2,19 @@
 // (createScenario throws on malformed content), so a bad scenario fails loudly
 // at boot with its id — it can never half-render inside a conversation.
 
-import { allChoiceKeys } from '../scenarioSchema.js?v=6';
-import { hotelCheckin, hotelRoomProblem } from './hotel.js?v=6';
-import { airportCheckin, missingFlight } from './airport.js?v=6';
-import { hospitalVisit, pharmacyVisit } from './health.js?v=6';
-import { restaurantOrder, wrongOrder } from './restaurant.js?v=6';
-import { meetingFriend, askingDirections } from './social.js?v=6';
-import { jobInterview, workplaceMisunderstanding } from './workplace.js?v=6';
-import { cafeOrder, cafeMeetup } from './cafe.js?v=6';
-import { supermarketHelp, clothingReturn } from './shopping.js?v=6';
-import { trainTicket, taxiRide } from './travel.js?v=6';
-import { bankLostCard, policeLostPhone } from './services.js?v=6';
-import { homeMorning } from './home.js?v=6';
-import { hotelAmenities, passportControl, restaurantBill } from './extras.js?v=6';
+import { allChoiceKeys } from '../scenarioSchema.js?v=7';
+import { hotelCheckin, hotelRoomProblem } from './hotel.js?v=7';
+import { airportCheckin, missingFlight } from './airport.js?v=7';
+import { hospitalVisit, pharmacyVisit } from './health.js?v=7';
+import { restaurantOrder, wrongOrder } from './restaurant.js?v=7';
+import { meetingFriend, askingDirections } from './social.js?v=7';
+import { jobInterview, workplaceMisunderstanding } from './workplace.js?v=7';
+import { cafeOrder, cafeMeetup } from './cafe.js?v=7';
+import { supermarketHelp, clothingReturn } from './shopping.js?v=7';
+import { trainTicket, taxiRide } from './travel.js?v=7';
+import { bankLostCard, policeLostPhone } from './services.js?v=7';
+import { homeMorning } from './home.js?v=7';
+import { hotelAmenities, passportControl, restaurantBill } from './extras.js?v=7';
 
 export const ALL_SCENARIOS = [
   // originals

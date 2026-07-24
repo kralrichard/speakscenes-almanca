@@ -1,4 +1,4 @@
-import { createScenario } from '../scenarioSchema.js?v=6';
+import { createScenario } from '../scenarioSchema.js?v=7';
 
 // ── Train station: buying a ticket (A2) ─────────────────────────────────────
 export const trainTicket = createScenario({
@@ -61,7 +61,7 @@ export const trainTicket = createScenario({
           altAccepted: ['Einfach bitte', 'Nur eine einfache Fahrt danke'],
           next: 'end_ticket' },
         { id: 'ask_discount', intentionTr: 'İndirim olup olmadığını sor', tone: 'polite', difficulty: 'hard', xp: 18,
-          sentence: 'Hin und zurück — und gibt es einen Studentenrabatt?',
+          sentence: 'Hin und zurück, und gibt es einen Studentenrabatt?',
           translation: 'Gidiş-dönüş — ve öğrenci indirimi var mı?',
           altAccepted: ['Hin und zurück und gibt es Studentenrabatt', 'Haben Sie einen Studentenrabatt'],
           next: 'discount' }
@@ -120,7 +120,7 @@ export const taxiRide = createScenario({
       translation: 'Sorun değil. Bu gece trafik biraz yoğun — aceleniz var mı, yoksa manzaralı yoldan mı gideyim?',
       choices: [
         { id: 'fast', intentionTr: 'Acelen olduğunu söyle', tone: 'direct', difficulty: 'medium', xp: 14,
-          sentence: 'Ich habe es eilig — den schnellsten Weg, bitte.',
+          sentence: 'Ich habe es eilig, den schnellsten Weg, bitte.',
           translation: 'Acelem var — en hızlı yol, lütfen.',
           altAccepted: ['Den schnellsten Weg bitte ich bin in Eile', 'Die schnellste Route ich habe es eilig'],
           next: 'end_arrived' },
@@ -142,7 +142,7 @@ export const taxiRide = createScenario({
           altAccepted: ['Ich bin nur ein paar Tage zu Besuch', 'Zu Besuch für ein paar Tage sehr schön hier'],
           next: 'recommend' },
         { id: 'quiet', intentionTr: 'Kibarca sessiz kalmayı tercih et', tone: 'polite', difficulty: 'medium', xp: 14,
-          sentence: 'Nur zu Besuch. Es war aber ein langer Tag — stört es Sie, wenn ich mich ausruhe?',
+          sentence: 'Nur zu Besuch. Es war aber ein langer Tag, stört es Sie, wenn ich mich ausruhe?',
           translation: 'Sadece ziyaret. Ama uzun bir gündü — dinlensem sorun olur mu?',
           altAccepted: ['Stört es Sie wenn ich mich ausruhe langer Tag', 'Langer Tag darf ich kurz die Augen zumachen'],
           next: 'end_arrived', relationshipEffect: 1 }

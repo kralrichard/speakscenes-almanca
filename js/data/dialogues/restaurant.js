@@ -1,4 +1,4 @@
-import { createDialogue } from '../dialogueSchema.js?v=6';
+import { createDialogue } from '../dialogueSchema.js?v=7';
 
 export const RESTAURANT_DIALOGUES = [
   createDialogue({
@@ -79,7 +79,7 @@ export const RESTAURANT_DIALOGUES = [
       { speaker: 'A', text: 'Here’s your pasta — enjoy!', translation_tr: 'İşte makarnanız — afiyet olsun!', emotion: 'happy', register: 'informal' },
       {
         speaker: 'B', expected: 'Sorry, I think there’s been a mistake. I actually ordered the soup.',
-        altAccepted: ['Excuse me, I think this is wrong — I ordered the soup.', 'Sorry, I ordered the soup, not the pasta.'],
+        altAccepted: ['Excuse me, I think this is wrong, I ordered the soup.', 'Sorry, I ordered the soup, not the pasta.'],
         translation_tr: 'Üzgünüm, sanırım bir hata oldu. Aslında çorba sipariş etmiştim.',
         register: 'neutral', ipa: '/ˈsɒri aɪ θɪŋk ðɛərz bɪn ə mɪˈsteɪk aɪ ˈæktʃuəli ˈɔːrdərd ðə suːp/',
         grammar: [

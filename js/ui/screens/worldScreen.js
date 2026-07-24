@@ -3,13 +3,13 @@
 // the player's growing avatar, current world level, coins, the world map of
 // featured locations (locked/unlocked), and the 5 mini-games. This is the
 // "game, not a lesson list" screen the product spec asks for.
-import { progressStore } from '../../progress/progressStore.js?v=6';
-import { worldStore, isLocationUnlocked, getFeaturedLocations } from '../../progress/worldStore.js?v=6';
-import { WORLD_LEVEL_CODES, getGrowthStage } from '../../data/worldLevels.js?v=6';
-import { MINI_GAME_TYPES } from '../../data/miniGames/index.js?v=6';
-import { MISSIONS } from '../../data/missions.js?v=6';
-import { renderPlayerAvatar } from '../components/avatarBuilder.js?v=6';
-import { navigate } from '../router.js?v=6';
+import { progressStore } from '../../progress/progressStore.js?v=7';
+import { worldStore, isLocationUnlocked, getFeaturedLocations } from '../../progress/worldStore.js?v=7';
+import { WORLD_LEVEL_CODES, getGrowthStage } from '../../data/worldLevels.js?v=7';
+import { MINI_GAME_TYPES } from '../../data/miniGames/index.js?v=7';
+import { MISSIONS } from '../../data/missions.js?v=7';
+import { renderPlayerAvatar } from '../components/avatarBuilder.js?v=7';
+import { navigate } from '../router.js?v=7';
 
 function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 

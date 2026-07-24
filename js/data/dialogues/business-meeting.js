@@ -1,4 +1,4 @@
-import { createDialogue } from '../dialogueSchema.js?v=6';
+import { createDialogue } from '../dialogueSchema.js?v=7';
 
 export const BUSINESS_MEETING_DIALOGUES = [
   createDialogue({
@@ -20,7 +20,7 @@ export const BUSINESS_MEETING_DIALOGUES = [
       { speaker: 'A', text: 'We’ve reviewed your proposal, and honestly, a fifteen percent discount is a stretch on our end.', translation_tr: 'Teklifinizi inceledik ve açıkçası yüzde on beşlik bir indirim bizim için zorlayıcı.', emotion: 'neutral', register: 'formal' },
       {
         speaker: 'B', expected: 'I appreciate that, and I understand there’s only so much room to move. That said, given the volume we’re committing to, ten percent feels like fair middle ground.',
-        altAccepted: ['I hear you, and I know margins are tight on your side. Still, considering the volume involved, ten percent seems like a reasonable compromise.', 'Understood — I know there’s limited flexibility. That said, with the volume we’re offering, ten percent strikes me as a fair middle ground.'],
+        altAccepted: ['I hear you, and I know margins are tight on your side. Still, considering the volume involved, ten percent seems like a reasonable compromise.', 'Understood, I know there’s limited flexibility. That said, with the volume we’re offering, ten percent strikes me as a fair middle ground.'],
         translation_tr: 'Bunu takdir ediyorum ve hareket alanının sınırlı olduğunu anlıyorum. Yine de, taahhüt ettiğimiz hacmi göz önüne alırsak, yüzde on adil bir orta yol gibi görünüyor.',
         register: 'formal', ipa: '/aɪ əˈpriːʃieɪt ðæt ænd aɪ ˌʌndərˈstænd ðɛərz ˈoʊnli soʊ mʌtʃ ruːm tuː muːv ðæt sɛd ˌgɪvən ðə ˈvɒljuːm wɪər kəˈmɪtɪŋ tuː tɛn pərˈsɛnt fiːlz laɪk fɛər ˈmɪdəl graʊnd/',
         grammar: [
@@ -73,7 +73,7 @@ export const BUSINESS_MEETING_DIALOGUES = [
       { speaker: 'A', text: 'Thanks for the overview. I have to ask, though — the timeline looks optimistic. What happens if it slips?', translation_tr: 'Genel bakış için teşekkürler. Ama sormam gerekiyor — zaman çizelgesi iyimser görünüyor. Eğer gecikirse ne olur?', emotion: 'curious', register: 'formal' },
       {
         speaker: 'B', expected: 'That’s a fair concern. We’ve built in a two-week buffer, and if we do slip beyond that, the rollout would shift, not the launch quality.',
-        altAccepted: ['Fair point — we’ve allowed a two-week buffer, so if things do slip, it’s the rollout date that moves, not the quality of the launch.', 'That’s a valid question. We have a two-week buffer built in, so any slippage would delay the rollout rather than compromise quality.'],
+        altAccepted: ['Fair point, we’ve allowed a two-week buffer, so if things do slip, it’s the rollout date that moves, not the quality of the launch.', 'That’s a valid question. We have a two-week buffer built in, so any slippage would delay the rollout rather than compromise quality.'],
         translation_tr: 'Bu geçerli bir endişe. İki haftalık bir tampon süre koyduk ve bunu aşarsak, gecikecek olan lansman kalitesi değil, dağıtım olur.',
         register: 'formal', ipa: '/ðæts ə fɛər kənˈsɜːrn wiːv bɪlt ɪn ə tuː wiːk ˈbʌfər ænd ɪf wiː duː slɪp bɪˈjɒnd ðæt ðə ˈroʊlaʊt wʊd ʃɪft nɒt ðə lɔːntʃ ˈkwɒləti/',
         grammar: [

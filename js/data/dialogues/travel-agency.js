@@ -1,4 +1,4 @@
-import { createDialogue } from '../dialogueSchema.js?v=6';
+import { createDialogue } from '../dialogueSchema.js?v=7';
 
 export const TRAVEL_AGENCY_DIALOGUES = [
   createDialogue({
@@ -48,7 +48,7 @@ export const TRAVEL_AGENCY_DIALOGUES = [
       { speaker: 'A', text: 'That should be manageable if we take the train between cities instead of flying. Shall I put together an itinerary?', translation_tr: 'Şehirler arasında uçmak yerine treni kullanırsak bu yönetilebilir olmalı. Bir gezi planı hazırlayayım mı?', emotion: 'thinking', register: 'formal' },
       {
         speaker: 'B', expected: 'That sounds ideal. Please go ahead and put something together.',
-        altAccepted: ['That works for me — please go ahead.', 'Sounds perfect, please put an itinerary together.'],
+        altAccepted: ['That works for me, please go ahead.', 'Sounds perfect, please put an itinerary together.'],
         translation_tr: 'Kulağa ideal geliyor. Lütfen devam edin ve bir şeyler hazırlayın.',
         register: 'formal', ipa: '/ðæt saʊndz aɪˈdiːəl pliːz goʊ əˈhɛd ænd pʊt ˈsʌmθɪŋ təˈgɛðər/',
         grammar: [

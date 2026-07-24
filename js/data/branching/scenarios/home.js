@@ -1,4 +1,4 @@
-import { createScenario } from '../scenarioSchema.js?v=6';
+import { createScenario } from '../scenarioSchema.js?v=7';
 
 // ── Home: a morning at home (A1) ────────────────────────────────────────────
 export const homeMorning = createScenario({
@@ -22,7 +22,7 @@ export const homeMorning = createScenario({
           altAccepted: ['Ja ich habe gut geschlafen danke', 'Morgen ich habe super geschlafen'],
           next: 'breakfast' },
         { id: 'tired', intentionTr: 'Hâlâ yorgun olduğunu söyle', tone: 'casual', difficulty: 'easy', xp: 10,
-          sentence: 'Morgen. Nicht wirklich — ich bin noch etwas müde.',
+          sentence: 'Morgen. Nicht wirklich, ich bin noch etwas müde.',
           translation: 'Günaydın. Pek sayılmaz — hâlâ biraz yorgunum.',
           altAccepted: ['Nicht wirklich ich bin noch müde', 'Ich bin noch ein bisschen müde'],
           next: 'breakfast' }
@@ -51,7 +51,7 @@ export const homeMorning = createScenario({
       translation: 'Peki bugün planların ne? Eğlenceli bir şey var mı?',
       choices: [
         { id: 'busy', intentionTr: 'Meşgul olduğunu söyle', tone: 'casual', difficulty: 'medium', xp: 14,
-          sentence: 'Ich habe viel zu tun — erst Arbeit und dann Fitnessstudio.',
+          sentence: 'Ich habe viel zu tun, erst Arbeit und dann Fitnessstudio.',
           translation: 'Oldukça meşgulüm — işim var, sonra da spor salonu.',
           altAccepted: ['Ich habe Arbeit und dann Fitnessstudio', 'Viel zu tun Arbeit und dann Sport'],
           next: 'end_day' },

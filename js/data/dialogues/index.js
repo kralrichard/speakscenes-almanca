@@ -3,24 +3,24 @@
 // results, then add one line here. Everything else (pickers, engine,
 // progress, review) discovers content through this module -- nothing else
 // needs to change.
-import { HOTEL_DIALOGUES } from './hotel.js?v=6';
-import { RESTAURANT_DIALOGUES } from './restaurant.js?v=6';
-import { CAFE_DIALOGUES } from './cafe.js?v=6';
-import { PHARMACY_DIALOGUES } from './pharmacy.js?v=6';
-import { TAXI_DIALOGUES } from './taxi.js?v=6';
-import { PASSPORT_CONTROL_DIALOGUES } from './passport-control.js?v=6';
-import { AIRPORT_DIALOGUES } from './airport.js?v=6';
-import { HOSPITAL_DIALOGUES } from './hospital.js?v=6';
-import { PARTY_DIALOGUES } from './party.js?v=6';
-import { TRAIN_STATION_DIALOGUES } from './train-station.js?v=6';
-import { CLOTHING_STORE_DIALOGUES } from './clothing-store.js?v=6';
-import { PHONE_CALL_DIALOGUES } from './phone-call.js?v=6';
-import { TECH_STORE_DIALOGUES } from './tech-store.js?v=6';
-import { JOB_INTERVIEW_DIALOGUES } from './job-interview.js?v=6';
-import { BANK_DIALOGUES } from './bank.js?v=6';
-import { TRAVEL_AGENCY_DIALOGUES } from './travel-agency.js?v=6';
-import { BUSINESS_MEETING_DIALOGUES } from './business-meeting.js?v=6';
-import { DEBATE_TOPICS_DIALOGUES } from './debate-topics.js?v=6';
+import { HOTEL_DIALOGUES } from './hotel.js?v=7';
+import { RESTAURANT_DIALOGUES } from './restaurant.js?v=7';
+import { CAFE_DIALOGUES } from './cafe.js?v=7';
+import { PHARMACY_DIALOGUES } from './pharmacy.js?v=7';
+import { TAXI_DIALOGUES } from './taxi.js?v=7';
+import { PASSPORT_CONTROL_DIALOGUES } from './passport-control.js?v=7';
+import { AIRPORT_DIALOGUES } from './airport.js?v=7';
+import { HOSPITAL_DIALOGUES } from './hospital.js?v=7';
+import { PARTY_DIALOGUES } from './party.js?v=7';
+import { TRAIN_STATION_DIALOGUES } from './train-station.js?v=7';
+import { CLOTHING_STORE_DIALOGUES } from './clothing-store.js?v=7';
+import { PHONE_CALL_DIALOGUES } from './phone-call.js?v=7';
+import { TECH_STORE_DIALOGUES } from './tech-store.js?v=7';
+import { JOB_INTERVIEW_DIALOGUES } from './job-interview.js?v=7';
+import { BANK_DIALOGUES } from './bank.js?v=7';
+import { TRAVEL_AGENCY_DIALOGUES } from './travel-agency.js?v=7';
+import { BUSINESS_MEETING_DIALOGUES } from './business-meeting.js?v=7';
+import { DEBATE_TOPICS_DIALOGUES } from './debate-topics.js?v=7';
 
 export const ALL_DIALOGUES = [
   ...HOTEL_DIALOGUES,

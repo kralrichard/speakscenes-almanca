@@ -1,4 +1,4 @@
-import { createScenario } from '../scenarioSchema.js?v=6';
+import { createScenario } from '../scenarioSchema.js?v=7';
 
 // ── Supermarket: finding items (A2) ─────────────────────────────────────────
 export const supermarketHelp = createScenario({
@@ -99,7 +99,7 @@ export const clothingReturn = createScenario({
           altAccepted: ['Ich will diese Jacke zurückgeben sie passt nicht', 'Ich möchte das zurückgeben falsche Größe'],
           next: 'receipt' },
         { id: 'return_faulty', intentionTr: 'Kusurlu olduğu için iade etmek istediğini söyle', tone: 'direct', difficulty: 'hard', xp: 18,
-          sentence: 'Ich muss diese Jacke zurückgeben — der Reißverschluss ist kaputt.',
+          sentence: 'Ich muss diese Jacke zurückgeben, der Reißverschluss ist kaputt.',
           translation: 'Bu ceketi iade etmem gerekiyor — fermuarı bozuk.',
           altAccepted: ['Der Reißverschluss ist kaputt ich will sie zurückgeben', 'Die Jacke hat einen kaputten Reißverschluss'],
           next: 'faulty' }
@@ -128,7 +128,7 @@ export const clothingReturn = createScenario({
       translation: 'Ah, çok üzgünüm! Kusurlu ürün — tam para iadesine hakkınız var. Fiş mi yoksa ödediğiniz kart mı var?',
       choices: [
         { id: 'card_faulty', intentionTr: 'Kartla ödediğini söyle', tone: 'polite', difficulty: 'medium', xp: 14,
-          sentence: 'Ich habe mit Karte gezahlt — hier ist sie.',
+          sentence: 'Ich habe mit Karte gezahlt, hier ist sie.',
           translation: 'Kartla ödemiştim — işte burada.',
           altAccepted: ['Mit Karte hier', 'Mit Karte hier ist sie'],
           next: 'refund_done', relationshipEffect: 1 },

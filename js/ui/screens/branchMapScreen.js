@@ -4,11 +4,11 @@
 // which endings were reached. Reachability is computed from the scenario data,
 // never hardcoded, so it stays correct as content grows.
 
-import { getScenario } from '../../data/branching/scenarios/index.js?v=6';
-import { getCharacter } from '../../data/branching/characters.js?v=6';
-import { storyStore } from '../../progress/storyStore.js?v=6';
-import { ENDING_KINDS } from '../../data/branching/scenarioSchema.js?v=6';
-import { navigate } from '../router.js?v=6';
+import { getScenario } from '../../data/branching/scenarios/index.js?v=7';
+import { getCharacter } from '../../data/branching/characters.js?v=7';
+import { storyStore } from '../../progress/storyStore.js?v=7';
+import { ENDING_KINDS } from '../../data/branching/scenarioSchema.js?v=7';
+import { navigate } from '../router.js?v=7';
 
 function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 

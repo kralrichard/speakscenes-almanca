@@ -1,8 +1,8 @@
-import { LEVELS } from '../../data/levels.js?v=6';
-import { LOCATIONS, getLocation } from '../../data/locations.js?v=6';
-import { findDialogues, getAvailableScenarioKeys } from '../../data/dialogues/index.js?v=6';
-import { progressStore } from '../../progress/progressStore.js?v=6';
-import { navigate } from '../router.js?v=6';
+import { LEVELS } from '../../data/levels.js?v=7';
+import { LOCATIONS, getLocation } from '../../data/locations.js?v=7';
+import { findDialogues, getAvailableScenarioKeys } from '../../data/dialogues/index.js?v=7';
+import { progressStore } from '../../progress/progressStore.js?v=7';
+import { navigate } from '../router.js?v=7';
 
 function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 

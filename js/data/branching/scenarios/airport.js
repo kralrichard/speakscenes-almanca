@@ -1,4 +1,4 @@
-import { createScenario } from '../scenarioSchema.js?v=6';
+import { createScenario } from '../scenarioSchema.js?v=7';
 
 // ── Airport check-in (A2) ───────────────────────────────────────────────────
 export const airportCheckin = createScenario({
@@ -17,7 +17,7 @@ export const airportCheckin = createScenario({
       translation: 'Günaydın! Pasaportunuzu ve rezervasyonunuzu görebilir miyim, lütfen?',
       choices: [
         { id: 'give_docs', intentionTr: 'Belgeleri ver', tone: 'polite', difficulty: 'easy', xp: 10,
-          sentence: 'Bitte sehr — mein Pass und meine Buchung auf dem Handy.',
+          sentence: 'Bitte sehr, mein Pass und meine Buchung auf dem Handy.',
           translation: 'Buyurun — pasaportum ve telefondaki rezervasyonum.',
           altAccepted: ['Hier sind mein Pass und meine Buchung', 'Bitte Pass und Buchung'],
           next: 'bags', relationshipEffect: 1 },
@@ -50,7 +50,7 @@ export const airportCheckin = createScenario({
           altAccepted: ['Nur Handgepäck', 'Nein nur diese Handtasche'],
           next: 'seat' },
         { id: 'ask_gate', intentionTr: 'Kapının nerede olduğunu sor', tone: 'polite', difficulty: 'medium', xp: 14,
-          sentence: 'Nur Handgepäck. Übrigens — können Sie mir sagen, welches Gate ich brauche?',
+          sentence: 'Nur Handgepäck. Übrigens, können Sie mir sagen, welches Gate ich brauche?',
           translation: 'Sadece el bagajı. Bu arada hangi kapıya gitmem gerektiğini söyler misiniz?',
           altAccepted: ['Welches Gate brauche ich', 'Können Sie mir mein Gate sagen'],
           next: 'gate_info' }
@@ -162,12 +162,12 @@ export const missingFlight = createScenario({
       translation: 'Rötar havayolunun hatası olduğundan yeniden rezervasyon ücreti yok. Ama o uçuşta sadece orta koltuk kaldı. Yine de ister misiniz?',
       choices: [
         { id: 'take_middle', intentionTr: 'Orta koltuğu kabul et', tone: 'casual', difficulty: 'easy', xp: 10,
-          sentence: 'Ein Mittelplatz ist okay — ich will einfach nur ankommen.',
+          sentence: 'Ein Mittelplatz ist okay, ich will einfach nur ankommen.',
           translation: 'Orta koltuk uygun — sadece oraya varmak istiyorum.',
           altAccepted: ['Mittelplatz ist okay', 'Ich nehme den Mittelplatz'],
           next: 'rebooked_sooner' },
         { id: 'ask_lounge', intentionTr: 'Bekleme için bir şey iste', tone: 'formal', difficulty: 'hard', xp: 18,
-          sentence: 'Ich nehme ihn. Angesichts der Verspätung — könnte ich für die Wartezeit einen Lounge-Pass bekommen?',
+          sentence: 'Ich nehme ihn. Angesichts der Verspätung, könnte ich für die Wartezeit einen Lounge-Pass bekommen?',
           translation: 'Alıyorum. Rötar göz önüne alınırsa, beklerken bir lounge kartı alabilir miyim?',
           altAccepted: ['Könnte ich einen Lounge-Pass bekommen', 'Bekomme ich Lounge-Zugang für die Wartezeit'],
           next: 'lounge_granted' }

@@ -4,10 +4,18 @@
 // can rely on the on-screen text instead of audio).
 
 // Locale-driven: every voice request resolves to the clone's target language.
-import { LOCALE } from '../data/shorts/langConfig.js?v=6';
+import { LOCALE } from '../data/shorts/langConfig.js?v=7';
 
 export function isTTSSupported() {
   return 'speechSynthesis' in window;
+}
+
+/** Strips em/en dashes before synthesis. Several voices treat a dash as a hard
+ *  stop and leave a long dead gap mid-line, and in word-by-word mode a lone
+ *  "—" becomes a silent "word" the learner waits through. ASCII hyphens are
+ *  left alone -- "check-in" is spoken correctly as written. */
+function speakableText(text) {
+  return String(text).replace(/\s*[‐-―−]+\s*/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
 class TTSService {
@@ -47,7 +55,7 @@ class TTSService {
       return { cancel() {} };
     }
     window.speechSynthesis.cancel();
-    const utter = new SpeechSynthesisUtterance(text);
+    const utter = new SpeechSynthesisUtterance(speakableText(text));
     const voice = this.pickVoice(opts.accent, opts.gender);
     if (voice) utter.voice = voice;
     utter.lang = LOCALE;
@@ -85,7 +93,7 @@ class TTSService {
   /** Speaks each word with a short pause after it, calling onWordStart(i, word)
    *  for each -- used by the "listen word by word" control. */
   speakWordByWord(text, opts = {}) {
-    const words = text.split(/\s+/).filter(Boolean);
+    const words = speakableText(text).split(/\s+/).filter(Boolean);
     let cancelled = false;
     const step = (i) => {
       if (cancelled || i >= words.length) {

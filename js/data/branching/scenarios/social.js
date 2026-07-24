@@ -1,4 +1,4 @@
-import { createScenario } from '../scenarioSchema.js?v=6';
+import { createScenario } from '../scenarioSchema.js?v=7';
 
 // ── Meeting a new friend (A1) ───────────────────────────────────────────────
 export const meetingFriend = createScenario({
@@ -39,7 +39,7 @@ export const meetingFriend = createScenario({
           altAccepted: ['Ich komme aus der Türkei und bin letzten Monat hergezogen', 'Aus der Türkei ich bin neu hier'],
           next: 'hobbies' },
         { id: 'ask_back', intentionTr: 'Sen nerelisin diye sor', tone: 'friendly', difficulty: 'medium', xp: 14,
-          sentence: 'Ich komme aus der Türkei. Und du — bist du von hier?',
+          sentence: 'Ich komme aus der Türkei. Und du, bist du von hier?',
           translation: 'Türkiye’denim. Ya sen — buralı mısın?',
           altAccepted: ['Ich komme aus der Türkei und du', 'Aus der Türkei woher kommst du'],
           next: 'hobbies', relationshipEffect: 1 }

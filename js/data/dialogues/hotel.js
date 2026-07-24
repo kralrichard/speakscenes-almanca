@@ -1,4 +1,4 @@
-import { createDialogue } from '../dialogueSchema.js?v=6';
+import { createDialogue } from '../dialogueSchema.js?v=7';
 
 export const HOTEL_DIALOGUES = [
   createDialogue({
@@ -96,7 +96,7 @@ export const HOTEL_DIALOGUES = [
       { speaker: 'A', text: 'Good evening, how can I help you?', translation_tr: 'İyi akşamlar, size nasıl yardımcı olabilirim?', emotion: 'neutral', register: 'formal' },
       {
         speaker: 'B', expected: 'I’m afraid there’s a problem with my room — it’s extremely noisy.',
-        altAccepted: ['I’m sorry to bother you, but my room is really noisy.', 'I need to report a problem — my room is very noisy.'],
+        altAccepted: ['I’m sorry to bother you, but my room is really noisy.', 'I need to report a problem, my room is very noisy.'],
         translation_tr: 'Korkarım odamda bir sorun var — çok gürültülü.',
         register: 'formal', ipa: '/aɪm əˈfreɪd ðɛrz ə ˈprɒbləm wɪð maɪ ruːm ɪts ɪkˈstriːmli ˈnɔɪzi/',
         grammar: [

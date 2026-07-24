@@ -1,4 +1,4 @@
-import { createDialogue } from '../dialogueSchema.js?v=6';
+import { createDialogue } from '../dialogueSchema.js?v=7';
 
 export const CLOTHING_STORE_DIALOGUES = [
   createDialogue({
@@ -20,7 +20,7 @@ export const CLOTHING_STORE_DIALOGUES = [
       { speaker: 'A', text: 'Hi, how can I help you today?', translation_tr: 'Merhaba, bugün size nasıl yardımcı olabilirim?', emotion: 'friendly', register: 'informal' },
       {
         speaker: 'B', expected: 'I’d like to return this jacket. There’s a tear in the sleeve.',
-        altAccepted: ['I’d like to return this jacket — the sleeve is torn.', 'I want to return this jacket because the sleeve is torn.'],
+        altAccepted: ['I’d like to return this jacket, the sleeve is torn.', 'I want to return this jacket because the sleeve is torn.'],
         translation_tr: 'Bu ceketi iade etmek istiyorum. Kolunda bir yırtık var.',
         register: 'neutral', ipa: '/aɪd laɪk tuː rɪˈtɜːrn ðɪs ˈdʒækɪt ðɛərz ə tɛər ɪn ðə sliːv/',
         grammar: [

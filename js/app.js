@@ -5,18 +5,18 @@
 // target language; the engine (speech scoring, TTS, growth, avatar, coins)
 // is the same language-agnostic core.
 
-import { registerRoute, startRouter } from './ui/router.js?v=6';
-import { renderShorts } from './ui/screens/shortsScreen.js?v=6';
-import { renderWorldShorts } from './ui/screens/worldShortsScreen.js?v=6';
-import { renderCharacterLite } from './ui/screens/characterLiteScreen.js?v=6';
-import { renderStoryMap } from './ui/screens/storyMapScreen.js?v=6';
-import { renderConversation } from './ui/screens/conversationScreen.js?v=6';
-import { renderBranchMap } from './ui/screens/branchMapScreen.js?v=6';
-import { renderPhrasePlaces, renderPhraseList } from './ui/screens/quickPracticeScreen.js?v=6';
-import { renderMiniGame } from './ui/screens/miniGameRouter.js?v=6';
-import { settings } from './progress/settingsStore.js?v=6';
-import { shortsCount } from './data/shorts/sentenceBank.js?v=6';
-import { APP_LANG, LOCALE } from './data/shorts/langConfig.js?v=6';
+import { registerRoute, startRouter } from './ui/router.js?v=7';
+import { renderShorts } from './ui/screens/shortsScreen.js?v=7';
+import { renderWorldShorts } from './ui/screens/worldShortsScreen.js?v=7';
+import { renderCharacterLite } from './ui/screens/characterLiteScreen.js?v=7';
+import { renderStoryMap } from './ui/screens/storyMapScreen.js?v=7';
+import { renderConversation } from './ui/screens/conversationScreen.js?v=7';
+import { renderBranchMap } from './ui/screens/branchMapScreen.js?v=7';
+import { renderPhrasePlaces, renderPhraseList } from './ui/screens/quickPracticeScreen.js?v=7';
+import { renderMiniGame } from './ui/screens/miniGameRouter.js?v=7';
+import { settings } from './progress/settingsStore.js?v=7';
+import { shortsCount } from './data/shorts/sentenceBank.js?v=7';
+import { APP_LANG, LOCALE } from './data/shorts/langConfig.js?v=7';
 
 function boot() {
   // Persisted accessibility settings before first paint.

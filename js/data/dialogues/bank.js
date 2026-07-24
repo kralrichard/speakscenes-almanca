@@ -1,4 +1,4 @@
-import { createDialogue } from '../dialogueSchema.js?v=6';
+import { createDialogue } from '../dialogueSchema.js?v=7';
 
 export const BANK_DIALOGUES = [
   createDialogue({
@@ -20,7 +20,7 @@ export const BANK_DIALOGUES = [
       { speaker: 'A', text: 'Good afternoon. What can I do for you?', translation_tr: 'İyi günler. Sizin için ne yapabilirim?', emotion: 'neutral', register: 'formal' },
       {
         speaker: 'B', expected: 'I noticed a charge on my statement that I don’t recognize, and I’d like to dispute it.',
-        altAccepted: ['There’s a charge on my account I don’t recognize, and I’d like to dispute it.', 'I’d like to dispute a charge on my statement — I don’t recall making it.'],
+        altAccepted: ['There’s a charge on my account I don’t recognize, and I’d like to dispute it.', 'I’d like to dispute a charge on my statement, I don’t recall making it.'],
         translation_tr: 'Hesap özetimde tanımadığım bir ücret fark ettim ve bunu itiraz etmek istiyorum.',
         register: 'formal', ipa: '/aɪ ˈnoʊtɪst ə tʃɑːrdʒ ɒn maɪ ˈsteɪtmənt ðæt aɪ doʊnt ˈrɛkəgnaɪz ænd aɪd laɪk tuː dɪsˈpjuːt ɪt/',
         grammar: [
@@ -35,7 +35,7 @@ export const BANK_DIALOGUES = [
       { speaker: 'A', text: 'I understand your concern. Could you point out the specific transaction?', translation_tr: 'Endişenizi anlıyorum. Belirli işlemi gösterebilir misiniz?', emotion: 'neutral', register: 'formal' },
       {
         speaker: 'B', expected: 'Yes, it’s this one here — dated the fifteenth, for eighty-nine dollars.',
-        altAccepted: ['It’s this transaction, dated the fifteenth, for eighty-nine dollars.', 'Right here — the one from the fifteenth for eighty-nine dollars.'],
+        altAccepted: ['It’s this transaction, dated the fifteenth, for eighty-nine dollars.', 'Right here, the one from the fifteenth for eighty-nine dollars.'],
         translation_tr: 'Evet, işte bu — on beşinde, seksen dokuz dolar tutarında.',
         register: 'neutral', ipa: '/jɛs ɪts ðɪs wʌn hɪər ˈdeɪtɪd ðə ˈfɪfˈtiːnθ fɔːr ˈeɪti naɪn ˈdɒlərz/',
         grammar: [

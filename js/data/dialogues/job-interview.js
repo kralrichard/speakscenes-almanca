@@ -1,4 +1,4 @@
-import { createDialogue } from '../dialogueSchema.js?v=6';
+import { createDialogue } from '../dialogueSchema.js?v=7';
 
 export const JOB_INTERVIEW_DIALOGUES = [
   createDialogue({
@@ -49,7 +49,7 @@ export const JOB_INTERVIEW_DIALOGUES = [
       { speaker: 'A', text: 'That’s good self-awareness. Do you have any questions for me?', translation_tr: 'Bu iyi bir öz farkındalık. Bana sormak istediğiniz bir sorunuz var mı?', emotion: 'friendly', register: 'formal' },
       {
         speaker: 'B', expected: 'Yes, actually — what does success look like in this role after the first six months?',
-        altAccepted: ['Yes, I’d love to know what success would look like in this position after six months.', 'Actually yes — how would you measure success in this role early on?'],
+        altAccepted: ['Yes, I’d love to know what success would look like in this position after six months.', 'Actually yes, how would you measure success in this role early on?'],
         translation_tr: 'Evet, aslında — ilk altı aydan sonra bu rolde başarı nasıl görünüyor?',
         register: 'formal', ipa: '/jɛs ˈæktʃuəli wʌt dʌz səkˈsɛs lʊk laɪk ɪn ðɪs roʊl ˈæftər ðə fɜːrst sɪks mʌnθs/',
         grammar: [

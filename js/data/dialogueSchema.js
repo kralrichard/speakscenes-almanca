@@ -72,6 +72,11 @@ export function tokenize(sentence) {
   return sentence
     .toLowerCase()
     .normalize('NFKC')
+    // Dashes are punctuation, not sounds. An em dash left in place survives as
+    // its own "—" token, which no learner can ever say, so it is scored as a
+    // permanently missing content word and the turn can never be passed.
+    // Hyphens break too: the recogniser hears "check-in" as "check in".
+    .replace(/[-‐-―−]+/g, ' ')
     .replace(/[.,!?;:"“”'’()]/g, '')
     .split(/\s+/)
     .filter(Boolean);
